@@ -13,7 +13,7 @@ model Product {
   name        String
   description String
   price       Int
-  image       Bytes
+  image       String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

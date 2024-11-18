@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { cn } from '@/lib/utils'
 import { Button, buttonVariants } from '@/components/ui/button'
@@ -39,7 +40,7 @@ export default function HomePage() {
       </section>
 
       {/* About Us Section */}
-      <section className='container mx-auto w-[90%] pt-12 lg:pt-20'>
+      <section className='container mx-auto w-[90%] py-12 lg:py-20'>
         <h2 className='text-center text-3xl font-bold text-black'>
           About Our Brand
         </h2>
@@ -116,6 +117,25 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* CTA Section */}
+      <section className='bg-white py-12 lg:py-20'>
+        <div className='container mx-auto w-[90%] text-center'>
+          <h2 className='text-3xl font-bold text-black'>
+            Ready to Transform Your Yoga Practice?
+          </h2>
+          <p className='mt-4'>
+            Explore our range of smart yoga products and start your journey
+            today.
+          </p>
+          <Link
+            href='/products'
+            className={cn(buttonVariants({ size: 'lg' }), 'mt-6')}
+          >
+            Browse Products
+          </Link>
+        </div>
+      </section>
+
       {/* Customer Testimonials */}
       <section className='container mx-auto w-[90%] py-12 lg:py-20'>
         <h2 className='mb-8 text-center text-3xl font-bold text-black'>
@@ -160,7 +180,7 @@ export default function HomePage() {
             <Input
               type='email'
               placeholder='Enter your email'
-              className='w-auto rounded-l-full rounded-r-none'
+              className='max-w-sm rounded-l-full rounded-r-none'
             />
             <Button
               type='submit'
@@ -169,12 +189,6 @@ export default function HomePage() {
               Subscribe
             </Button>
           </form>
-          <a
-            href='https://www.freepik.com/search'
-            className='mt-6 block text-xs'
-          >
-            Icon by Backwoods
-          </a>
         </div>
       </section>
     </div>

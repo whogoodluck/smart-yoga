@@ -8,7 +8,7 @@ export default function Header() {
     <header className='h-24'>
       <div className='container mx-auto flex h-full w-[90%] items-center justify-between'>
         <Link href='/'>
-          <Image src={appLogo} alt='App Logo' width={50} />
+          <Image src={appLogo} alt='App Logo' width={50} priority />
         </Link>
 
         <nav className='flex items-center gap-2'>
