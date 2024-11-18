@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { selectGetProducts } from '@/services/select'
-import { Prisma } from '@prisma/client'
+
+import { Product } from '@/types/product-type'
 
 type ProductCardProps = {
-  product: Prisma.ProductGetPayload<{ select: typeof selectGetProducts }>
+  product: Product
 }
 
 export default function ProductCard({ product }: ProductCardProps) {

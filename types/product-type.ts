@@ -1,3 +1,5 @@
+import { Prisma } from '@prisma/client'
+
 export const selectGetProducts = {
   id: true,
   name: true,
@@ -5,6 +7,10 @@ export const selectGetProducts = {
   price: true,
   image: true
 }
+
+export type Product = Prisma.ProductGetPayload<{
+  select: typeof selectGetProducts
+}>
 
 export const selectGetProductDetails = {
   id: true,
@@ -19,3 +25,7 @@ export const selectGetProductDetails = {
   brand: true,
   rating: true
 }
+
+export type ProductDetails = Prisma.ProductGetPayload<{
+  select: typeof selectGetProductDetails
+}>

@@ -11,15 +11,17 @@ export const metadata: Metadata = {
 }
 
 type ProductDetailsPageProps = {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 export default async function ProductDetailsPage({
   params
 }: ProductDetailsPageProps) {
-  const product = await getProductDetails((await params).id)
+  const { id } = await params
+
+  const product = await getProductDetails(id)
 
   if (!product) return notFound()
 
@@ -43,12 +45,7 @@ export default async function ProductDetailsPage({
           <div className='mt-8'>
             <h2 className='text-xl font-bold text-black'>Quantity</h2>
             <div className='mt-2 flex items-center gap-2'>
-              <Button
-                size='sm'
-                className='h-10 w-10'
-                // disabled={quantity <= 0 || isCombo}
-                // onClick={handleDecreaseQuantity}
-              >
+              <Button size='sm' className='h-10 w-10'>
                 <MinusIcon />
               </Button>
               <p className='w-8 text-center'>2</p>

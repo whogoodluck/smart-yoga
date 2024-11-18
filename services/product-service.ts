@@ -1,15 +1,27 @@
 'use server'
 
-import fetcher from '@/lib/fetcher'
+import {
+  selectGetProductDetails,
+  selectGetProducts
+} from '@/types/product-type'
+import prisma from '@/lib/prisma'
 
 export async function getProducts() {
-  return await fetcher('/api/products')
+  return await prisma.product.findMany({
+    select: selectGetProducts
+  })
 }
 
 export async function getFourProducts() {
-  return await fetcher('/api/products?take=4')
+  return await prisma.product.findMany({
+    take: 4,
+    select: selectGetProducts
+  })
 }
 
 export async function getProductDetails(productId: string) {
-  return await fetcher(`/api/products/${productId}`)
+  return await prisma.product.findUnique({
+    where: { id: productId },
+    select: selectGetProductDetails
+  })
 }
