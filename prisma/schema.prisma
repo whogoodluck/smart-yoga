@@ -12,8 +12,8 @@ model Product {
   id          String   @id @default(cuid())
   name        String
   description String
-  price       Float
-  imageData   Bytes
+  price       Int
+  image       Bytes
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
