@@ -11,9 +11,12 @@ export default function Header() {
           <Image src={appLogo} alt='App Logo' width={50} priority />
         </Link>
 
-        <nav className='flex items-center gap-2'>
+        <nav className='flex items-center gap-4'>
           <Link href='/products' className='underline-offset-4 hover:underline'>
             Products
+          </Link>
+          <Link href='/blogs' className='underline-offset-4 hover:underline'>
+            Blogs
           </Link>
         </nav>
       </div>

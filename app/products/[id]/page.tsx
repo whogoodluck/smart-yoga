@@ -2,12 +2,21 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { getProductDetails } from '@/services/product-service'
-import { MinusIcon, PlusIcon } from 'lucide-react'
 
-import { Button } from '@/components/ui/button'
+import AddToCartBtn from './add-to-cart-btn'
+import ProductQuantity from './product-quantity'
 
-export const metadata: Metadata = {
-  title: 'Product'
+export async function generateMetadata({
+  params
+}: {
+  params: Promise<{ id: string }>
+}): Promise<Metadata> {
+  const id = (await params).id
+
+  const product = await getProductDetails(id)
+  return {
+    title: product?.name || 'Product'
+  }
 }
 
 type ProductDetailsPageProps = {
@@ -38,23 +47,7 @@ export default async function ProductDetailsPage({
         />
 
         <div>
-          <h1 className='text-3xl font-bold text-black'>{product.name}</h1>
-          <p className='mt-3'>{product.description}</p>
-          <p className='mt-6 text-2xl font-semibold'>₹{product.price / 100}</p>
-
-          <div className='mt-8'>
-            <h2 className='text-xl font-bold text-black'>Quantity</h2>
-            <div className='mt-2 flex items-center gap-2'>
-              <Button size='sm' className='h-10 w-10'>
-                <MinusIcon />
-              </Button>
-              <p className='w-8 text-center'>2</p>
-              <Button size='sm' className='h-10 w-10'>
-                <PlusIcon />
-              </Button>
-            </div>
-          </div>
-
+          <ProductQuantity product={product} />
           <div className='mt-6 space-y-2'>
             <p>
               <strong>Category:</strong> {product.category}
@@ -75,14 +68,7 @@ export default async function ProductDetailsPage({
               <strong>Rating:</strong> {product.rating} ⭐
             </p>
           </div>
-
-          <Button
-            variant='secondary'
-            size='lg'
-            className='mt-7 w-full lg:w-1/2'
-          >
-            Add to Cart
-          </Button>
+          <AddToCartBtn name={product.name} />
         </div>
       </div>
     </div>

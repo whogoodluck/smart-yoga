@@ -179,9 +179,85 @@ async function main() {
     }
   ]
 
+  const blogs = [
+    {
+      title: 'Benefits of Morning Yoga',
+      content:
+        'Discover the amazing benefits of starting your day with morning yoga. From improved flexibility to a calmer mind, learn why yoga is the perfect way to begin your day.',
+      author: 'Jane Doe',
+      image:
+        'https://images.pexels.com/photos/3756523/pexels-photo-3756523.jpeg',
+      tags: ['yoga', 'wellness', 'morning routine']
+    },
+    {
+      title: 'Meditation Techniques for Beginners',
+      content:
+        'Learn simple and effective meditation techniques that are perfect for beginners. Start your journey towards mindfulness and inner peace today.',
+      author: 'John Smith',
+      image:
+        'https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg',
+      tags: ['meditation', 'mindfulness', 'yoga']
+    },
+    {
+      title: 'Top 5 Yoga Poses for Stress Relief',
+      content:
+        'Feeling stressed? Try these top 5 yoga poses that are specifically designed to help you relax and de-stress after a long day.',
+      author: 'Emily Johnson',
+      image:
+        'https://images.pexels.com/photos/2908175/pexels-photo-2908175.jpeg',
+      tags: ['stress relief', 'yoga poses', 'health']
+    },
+    {
+      title: 'Mindful Eating: Combining Yoga and Nutrition',
+      content:
+        'Discover how to incorporate mindful eating practices into your yoga routine. Learn the connection between nutrition and yoga for a balanced lifestyle.',
+      author: 'Sarah Green',
+      image:
+        'https://images.pexels.com/photos/3757941/pexels-photo-3757941.jpeg',
+      tags: ['nutrition', 'mindful eating', 'yoga']
+    },
+    {
+      title: 'The Power of Breath in Yoga',
+      content:
+        'Breath control is an essential aspect of yoga. Discover the power of breath and how it can transform your yoga practice and overall well-being.',
+      author: 'David Kim',
+      image: 'https://images.pexels.com/photos/317157/pexels-photo-317157.jpeg',
+      tags: ['breathwork', 'yoga practice', 'well-being']
+    },
+    {
+      title: 'Yoga and Mental Health: Finding Inner Peace',
+      content:
+        'Yoga is not just physical exercise; it’s also a great way to support mental health. Learn how yoga can help manage stress, anxiety, and depression.',
+      author: 'Anna Wilson',
+      image:
+        'https://images.pexels.com/photos/4056528/pexels-photo-4056528.jpeg',
+      tags: ['mental health', 'yoga benefits', 'inner peace']
+    },
+    {
+      title: 'Yoga for Athletes: Enhancing Performance',
+      content:
+        'Athletes can greatly benefit from yoga. Explore how yoga can enhance athletic performance, improve flexibility, and aid in recovery.',
+      author: 'Chris Adams',
+      image:
+        'https://images.pexels.com/photos/3822621/pexels-photo-3822621.jpeg',
+      tags: ['athletes', 'performance', 'yoga']
+    },
+    {
+      title: 'Setting Intentions in Your Yoga Practice',
+      content:
+        'Setting an intention is a powerful way to enhance your yoga practice. Learn how to set meaningful intentions and align your practice with your personal goals.',
+      author: 'Sophie Taylor',
+      image:
+        'https://images.pexels.com/photos/4325434/pexels-photo-4325434.jpeg',
+      tags: ['intention', 'mindfulness', 'yoga practice']
+    }
+  ]
+
   try {
     await prisma.product.deleteMany()
     await prisma.product.createMany({ data: products })
+    await prisma.blog.deleteMany()
+    await prisma.blog.createMany({ data: blogs })
     console.log('Seed data created successfully!')
   } catch (error) {
     console.error('Error seeding data:', error)

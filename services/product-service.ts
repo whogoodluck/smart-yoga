@@ -8,14 +8,16 @@ import prisma from '@/lib/prisma'
 
 export async function getProducts() {
   return await prisma.product.findMany({
-    select: selectGetProducts
+    select: selectGetProducts,
+    orderBy: { createdAt: 'desc' }
   })
 }
 
 export async function getFourProducts() {
   return await prisma.product.findMany({
     take: 4,
-    select: selectGetProducts
+    select: selectGetProducts,
+    orderBy: { createdAt: 'desc' }
   })
 }
 

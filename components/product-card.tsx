@@ -9,7 +9,10 @@ type ProductCardProps = {
 
 export default function ProductCard({ product }: ProductCardProps) {
   return (
-    <Link href={`/products/${product.id}`} className='rounded-lg bg-white'>
+    <Link
+      href={`/products/${product.id}`}
+      className='rounded-lg bg-white hover:shadow'
+    >
       <div className='relative h-60 w-full overflow-hidden rounded-t-lg'>
         <Image
           src={product.image}
@@ -21,7 +24,9 @@ export default function ProductCard({ product }: ProductCardProps) {
         />
       </div>
       <div className='p-6'>
-        <h2 className='text-xl font-semibold'>{product.name}</h2>
+        <h2 className='text-xl font-semibold underline-offset-4 hover:underline'>
+          {product.name}
+        </h2>
         <p className='mt-2 text-sm text-foreground/90'>{product.description}</p>
         <p className='mt-3 text-lg font-semibold'>₹{product.price / 100}</p>
       </div>

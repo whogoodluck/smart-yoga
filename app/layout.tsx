@@ -5,6 +5,8 @@ import { cn } from '@/lib/utils'
 
 import './globals.css'
 
+import { Toaster } from 'react-hot-toast'
+
 import Header from '@/components/header'
 
 export const metadata: Metadata = {
@@ -27,6 +29,7 @@ export default function RootLayout({
       >
         <Header />
         <main>{children}</main>
+        <Toaster />
       </body>
     </html>
   )
