@@ -9,3 +9,11 @@ export async function getBlogs() {
     orderBy: { createdAt: 'desc' }
   })
 }
+
+export async function getFourBlogs() {
+  return await prisma.blog.findMany({
+    take: 4,
+    select: selectGetBlogs,
+    orderBy: { createdAt: 'desc' }
+  })
+}

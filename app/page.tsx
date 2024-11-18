@@ -1,15 +1,18 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { getFourBlogs } from '@/services/blog-service'
 import { getFourProducts } from '@/services/product-service'
 
 import { cn } from '@/lib/utils'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import BlogCard from '@/components/blog-card'
 import ProductCard from '@/components/product-card'
 import yogaBanner from '@/public/images/yoga-banner.jpg'
 
 export default async function HomePage() {
   const products = await getFourProducts()
+  const blogs = await getFourBlogs()
 
   return (
     <div>
@@ -132,7 +135,7 @@ export default async function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className='bg-white py-12 lg:py-20'>
+      <section className='bg-white py-16 lg:py-28'>
         <div className='container mx-auto w-[90%] text-center'>
           <h2 className='text-3xl font-bold text-black'>
             Ready to Transform Your Yoga Practice?
@@ -150,35 +153,47 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Customer Testimonials */}
-      <section className='container mx-auto w-[90%] py-12 lg:py-20'>
-        <h2 className='text-center text-3xl font-bold text-black'>
-          What Our Customers Say
-        </h2>
+      {/* Blogs Section */}
+      <section className='container mx-auto w-[90%] py-12 text-center lg:py-20'>
+        <h2 className='text-3xl font-bold text-black'>Blogs</h2>
+        <div className='mt-8 grid gap-8 md:grid-cols-3 lg:grid-cols-4'>
+          {blogs.map(blog => (
+            <BlogCard key={blog.id} blog={blog} />
+          ))}
+        </div>
+      </section>
 
-        <div className='mt-8 grid gap-8 md:grid-cols-3'>
-          <blockquote className='rounded-lg bg-white p-6'>
-            <p className='mb-4 italic'>
-              &quot;The smart yoga mat has transformed my practice. I get
-              instant feedback, and it feels like having a personal
-              instructor!&quot;
-            </p>
-            <footer className='font-semibold'>- Sarah L.</footer>
-          </blockquote>
-          <blockquote className='rounded-lg bg-white p-6'>
-            <p className='mb-4 italic'>
-              &quot;I love the personalized routines. It’s amazing how tailored
-              the sessions are based on my progress.&quot;
-            </p>
-            <footer className='font-semibold'>- John D.</footer>
-          </blockquote>
-          <blockquote className='rounded-lg bg-white p-6'>
-            <p className='mb-4 italic'>
-              &quot;The best investment I&apos;ve made for my yoga journey. It’s
-              like having a private instructor at home.&quot;
-            </p>
-            <footer className='font-semibold'>- Emily R.</footer>
-          </blockquote>
+      {/* Customer Testimonials */}
+      <section className='bg-white py-12 lg:py-20'>
+        <div className='container mx-auto w-[90%]'>
+          <h2 className='text-center text-3xl font-bold text-black'>
+            What Our Customers Say
+          </h2>
+
+          <div className='mt-8 grid gap-8 md:grid-cols-3'>
+            <blockquote className='rounded-lg bg-background p-6'>
+              <p className='mb-4 italic'>
+                &quot;The smart yoga mat has transformed my practice. I get
+                instant feedback, and it feels like having a personal
+                instructor!&quot;
+              </p>
+              <footer className='font-semibold'>- Sarah L.</footer>
+            </blockquote>
+            <blockquote className='rounded-lg bg-background p-6'>
+              <p className='mb-4 italic'>
+                &quot;I love the personalized routines. It’s amazing how
+                tailored the sessions are based on my progress.&quot;
+              </p>
+              <footer className='font-semibold'>- John D.</footer>
+            </blockquote>
+            <blockquote className='rounded-lg bg-background p-6'>
+              <p className='mb-4 italic'>
+                &quot;The best investment I&apos;ve made for my yoga journey.
+                It’s like having a private instructor at home.&quot;
+              </p>
+              <footer className='font-semibold'>- Emily R.</footer>
+            </blockquote>
+          </div>
         </div>
       </section>
 
