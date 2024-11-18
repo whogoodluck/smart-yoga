@@ -9,7 +9,7 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className='relative flex items-center justify-center py-12 text-white lg:h-screen'>
+      <section className='relative flex items-center justify-center py-12 text-white lg:h-[calc(100vh-6rem)]'>
         <Image
           src={yogaBanner}
           alt='Hero Background'
@@ -160,15 +160,21 @@ export default function HomePage() {
             <Input
               type='email'
               placeholder='Enter your email'
-              className='w-auto rounded-r-none'
+              className='w-auto rounded-l-full rounded-r-none'
             />
             <Button
               type='submit'
-              className='h-10 rounded-l-none bg-white px-6 py-2 text-primary hover:bg-gray-200'
+              className='text-primary h-10 rounded-l-none bg-white px-6 py-2 hover:bg-gray-200'
             >
               Subscribe
             </Button>
           </form>
+          <a
+            href='https://www.freepik.com/search'
+            className='mt-6 block text-xs'
+          >
+            Icon by Backwoods
+          </a>
         </div>
       </section>
     </div>
