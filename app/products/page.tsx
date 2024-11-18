@@ -35,7 +35,7 @@ export default async function ProductsPage() {
             </div>
             <div className='p-6'>
               <h2 className='text-xl font-semibold'>{product.name}</h2>
-              <p className='text-foreground/90 mt-2 text-sm'>
+              <p className='mt-2 text-sm text-foreground/90'>
                 {product.description}
               </p>
               <p className='mt-3 text-lg font-semibold'>Rs. {product.price}</p>
