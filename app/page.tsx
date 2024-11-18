@@ -51,7 +51,7 @@ export default async function HomePage() {
         <h2 className='text-center text-3xl font-bold text-black'>
           About Our Brand
         </h2>
-        <p className='mt-6 text-center text-lg'>
+        <p className='mt-6 text-center lg:text-lg'>
           We believe in combining technology with wellness to help you achieve a
           deeper connection with your body and mind. Our smart yoga products are
           designed to provide real-time feedback and personalized routines,
