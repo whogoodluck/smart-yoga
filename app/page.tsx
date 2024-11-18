@@ -27,7 +27,7 @@ export default function HomePage() {
           <p className='mt-4 lg:text-xl'>
             Discover smart yoga products that guide and support your practice.
           </p>
-          <a
+          <Link
             href='/products'
             className={cn(
               buttonVariants({ size: 'lg', variant: 'secondary' }),
@@ -35,7 +35,7 @@ export default function HomePage() {
             )}
           >
             Shop Now
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -131,7 +131,7 @@ export default function HomePage() {
             href='/products'
             className={cn(buttonVariants({ size: 'lg' }), 'mt-6')}
           >
-            Browse Products
+            Shop Now
           </Link>
         </div>
       </section>
