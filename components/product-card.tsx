@@ -23,7 +23,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       <div className='p-6'>
         <h2 className='text-xl font-semibold'>{product.name}</h2>
         <p className='mt-2 text-sm text-foreground/90'>{product.description}</p>
-        <p className='mt-3 text-lg font-semibold'>Rs. {product.price}</p>
+        <p className='mt-3 text-lg font-semibold'>₹{product.price / 100}</p>
       </div>
     </Link>
   )
