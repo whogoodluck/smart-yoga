@@ -1,12 +1,16 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { getFourProducts } from '@/services/product-service'
 
 import { cn } from '@/lib/utils'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import ProductCard from '@/components/product-card'
 import yogaBanner from '@/public/images/yoga-banner.jpg'
 
-export default function HomePage() {
+export default async function HomePage() {
+  const products = await getFourProducts()
+
   return (
     <div>
       {/* Hero Section */}
@@ -40,11 +44,11 @@ export default function HomePage() {
       </section>
 
       {/* About Us Section */}
-      <section className='container mx-auto w-[90%] py-12 lg:py-20'>
+      <section className='container mx-auto w-[90%] pt-12 lg:pt-20'>
         <h2 className='text-center text-3xl font-bold text-black'>
           About Our Brand
         </h2>
-        <p className='mt-4 text-center text-lg'>
+        <p className='mt-6 text-center text-lg'>
           We believe in combining technology with wellness to help you achieve a
           deeper connection with your body and mind. Our smart yoga products are
           designed to provide real-time feedback and personalized routines,
@@ -117,19 +121,29 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Featured Products Section */}
+      <section className='container mx-auto w-[90%] py-12 text-center lg:py-20'>
+        <h2 className='text-3xl font-bold text-black'>Featured Products</h2>
+        <div className='mt-8 grid gap-8 md:grid-cols-3 lg:grid-cols-4'>
+          {products.map(product => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className='bg-white py-12 lg:py-20'>
         <div className='container mx-auto w-[90%] text-center'>
           <h2 className='text-3xl font-bold text-black'>
             Ready to Transform Your Yoga Practice?
           </h2>
-          <p className='mt-4'>
+          <p className='mt-6'>
             Explore our range of smart yoga products and start your journey
             today.
           </p>
           <Link
             href='/products'
-            className={cn(buttonVariants({ size: 'lg' }), 'mt-6')}
+            className={cn(buttonVariants({ size: 'lg' }), 'mt-8')}
           >
             Shop Now
           </Link>
@@ -138,11 +152,11 @@ export default function HomePage() {
 
       {/* Customer Testimonials */}
       <section className='container mx-auto w-[90%] py-12 lg:py-20'>
-        <h2 className='mb-8 text-center text-3xl font-bold text-black'>
+        <h2 className='text-center text-3xl font-bold text-black'>
           What Our Customers Say
         </h2>
 
-        <div className='grid gap-8 md:grid-cols-3'>
+        <div className='mt-8 grid gap-8 md:grid-cols-3'>
           <blockquote className='rounded-lg bg-white p-6'>
             <p className='mb-4 italic'>
               &quot;The smart yoga mat has transformed my practice. I get
