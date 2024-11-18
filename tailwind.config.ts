@@ -11,7 +11,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-inter)']
+        sans: ['var(--font-poppins)']
       },
       colors: {
         background: 'hsl(var(--background))',
