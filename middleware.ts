@@ -8,11 +8,11 @@ export async function middleware(req: NextRequest) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
   const url = req.nextUrl.clone()
 
-  if (token) {
-    if (
-      req.nextUrl.pathname === '/signin' ||
-      req.nextUrl.pathname === '/signup'
-    ) {
+  if (
+    req.nextUrl.pathname === '/signin' ||
+    req.nextUrl.pathname === '/signup'
+  ) {
+    if (token) {
       url.pathname = '/products'
       return NextResponse.redirect(url)
     }
@@ -21,12 +21,10 @@ export async function middleware(req: NextRequest) {
       url.pathname = '/products'
       return NextResponse.redirect(url)
     }
-  } else {
-    if (req.nextUrl.pathname === '/cart') {
-      url.pathname = '/signin'
-      url.searchParams.set('callbackUrl', req.url)
-      return NextResponse.redirect(url)
-    }
+  } else if (!token && req.nextUrl.pathname === '/cart') {
+    url.pathname = '/signin'
+    url.searchParams.set('callbackUrl', req.url)
+    return NextResponse.redirect(url)
   }
 
   return NextResponse.next()

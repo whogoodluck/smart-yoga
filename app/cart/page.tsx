@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { getCart } from '@/services/cart-service'
 
 import CartEmpty from './cart-empty'
-import CartItem from './cart-item'
+import CartProduct from './cart-product'
 import PlaceOrderBtn from './place-order-btn'
 
 export const metadata: Metadata = {
@@ -28,20 +28,24 @@ export default async function CartPage() {
         Shopping Cart
       </h1>
 
-      <div className='flex w-full flex-1 justify-center gap-12'>
+      <div className='flex w-full flex-1 flex-col justify-center gap-12 lg:flex-row'>
         <div className='mt-12 flex max-w-3xl flex-1 flex-col'>
           {cart.items.map(item => (
-            <CartItem key={item.id} product={item.product} cart={cart} />
+            <CartProduct key={item.id} cartItem={item} />
           ))}
         </div>
 
-        <div className='mt-8 min-w-64 max-w-2xl'>
+        <div className='mt-8 min-w-64 max-w-3xl'>
           <div className='mt-8 flex w-full justify-between'>
             <h3 className='font-bold'>Subtotal</h3>
             <p className='text-lg font-medium'>{subtotal}</p>
           </div>
+          <div className='mt-4 flex justify-between'>
+            <h3 className='font-bold'>Discount</h3>
+            <p className='text-lg font-medium'>10%</p>
+          </div>
 
-          <div className='mt-8 flex justify-between'>
+          <div className='mt-4 flex justify-between border-t pt-4'>
             <h3 className='font-bold'>Total</h3>
             <p className='text-lg font-medium'>{total}</p>
           </div>

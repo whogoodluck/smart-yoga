@@ -33,17 +33,16 @@ export default async function ProductDetailsPage({
   params
 }: ProductDetailsPageProps) {
   const { id } = await params
-
   const product = await getProductDetails(id)
-
   if (!product) return notFound()
 
   const session = await getServerSession(authOptions)
-
   let cart = null
   if (session) {
     cart = await getCart()
   }
+
+  const cartItem = cart?.items.find(item => item.product.id === product.id)
 
   return (
     <div className='container mx-auto w-[90%] py-12 lg:py-20'>
@@ -62,10 +61,12 @@ export default async function ProductDetailsPage({
           <p className='mt-3'>{product.description}</p>
           <p className='mt-6 text-2xl font-semibold'>₹{product.price / 100}</p>
 
-          <div className='mt-8'>
-            <h2 className='mb-2 text-xl font-bold text-black'>Quantity</h2>
-            <ProductQuantity product={product} cart={cart} />
-          </div>
+          {!!cartItem && (
+            <div className='mt-8'>
+              <h2 className='mb-2 text-xl font-bold text-black'>Quantity</h2>
+              <ProductQuantity cartItem={cartItem} />
+            </div>
+          )}
 
           <div className='mt-6 space-y-2'>
             <p>

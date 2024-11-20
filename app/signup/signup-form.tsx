@@ -2,9 +2,13 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { createUser } from '@/services/user-service'
-import { RegisterForm, registerFormSchema } from '@/validators/auth-schema'
+import {
+  LoginForm,
+  RegisterForm,
+  registerFormSchema
+} from '@/validators/auth-schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { EyeIcon, EyeOffIcon } from 'lucide-react'
 import { signIn } from 'next-auth/react'
@@ -27,6 +31,7 @@ export default function SignupForm() {
   const [isSigningUp, setIsSigningUp] = useState(false)
 
   const searchParams = useSearchParams()
+  const router = useRouter()
 
   const form = useForm<RegisterForm>({
     resolver: zodResolver(registerFormSchema),
@@ -41,15 +46,33 @@ export default function SignupForm() {
   async function onSubmit(data: RegisterForm) {
     try {
       setIsSigningUp(true)
-      const createdUser = await createUser(data)
-      const callbackUrl = searchParams.get('callbackUrl') || '/products'
-      await signIn('credentials', { email: createdUser.email, password: createdUser.password,
-        callbackUrl
-      })
+      await createUser(data)
+      handleSignin({ email: data.email, password: data.password })
     } catch (err) {
       if (err instanceof Error) {
         toast.error(err.message || 'Failed to register. Please try again.')
       } else toast.error('Something went wrong')
+    } finally {
+      setIsSigningUp(false)
+    }
+  }
+
+  async function handleSignin(credentials: LoginForm) {
+    try {
+      const response = await signIn('credentials', {
+        ...credentials,
+        redirect: false
+      })
+
+      if (response?.status === 401) toast.error('Invalid credentials')
+
+      const callbackUrl = searchParams.get('callbackUrl') || '/products'
+      if (response?.status === 200) {
+        router.push(callbackUrl)
+        form.reset()
+      }
+    } catch {
+      toast.error('Something went wrong')
     } finally {
       setIsSigningUp(false)
     }

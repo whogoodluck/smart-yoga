@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import BlogCard from '@/components/blog-card'
+import InstagramEmbed from '@/components/instagram-embed'
 import ProductCard from '@/components/product-card'
 import yogaBanner from '@/public/images/yoga-banner.jpg'
 
@@ -47,7 +48,7 @@ export default async function HomePage() {
       </section>
 
       {/* About Us Section */}
-      <section className='container mx-auto w-[90%] pt-12 lg:pt-20'>
+      <section className='container mx-auto w-[90%] py-12 lg:py-20'>
         <h2 className='text-center text-3xl font-bold text-black'>
           About Our Brand
         </h2>
@@ -124,16 +125,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Featured Products Section */}
-      <section className='container mx-auto w-[90%] py-12 text-center lg:py-20'>
-        <h2 className='text-3xl font-bold text-black'>Featured Products</h2>
-        <div className='mt-8 grid gap-8 md:grid-cols-3 lg:grid-cols-4'>
-          {products.map(product => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className='bg-white py-16 lg:py-28'>
         <div className='container mx-auto w-[90%] text-center'>
@@ -153,12 +144,12 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Blogs Section */}
+      {/* Featured Products Section */}
       <section className='container mx-auto w-[90%] py-12 text-center lg:py-20'>
-        <h2 className='text-3xl font-bold text-black'>Blogs</h2>
+        <h2 className='text-3xl font-bold text-black'>Featured Products</h2>
         <div className='mt-8 grid gap-8 md:grid-cols-3 lg:grid-cols-4'>
-          {blogs.map(blog => (
-            <BlogCard key={blog.id} blog={blog} />
+          {products.map(product => (
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </section>
@@ -195,6 +186,21 @@ export default async function HomePage() {
             </blockquote>
           </div>
         </div>
+      </section>
+
+      {/* Blogs Section */}
+      <section className='container mx-auto w-[90%] py-12 text-center lg:py-20'>
+        <h2 className='text-3xl font-bold text-black'>Blogs</h2>
+        <div className='mt-8 grid gap-8 md:grid-cols-3 lg:grid-cols-4'>
+          {blogs.map(blog => (
+            <BlogCard key={blog.id} blog={blog} />
+          ))}
+        </div>
+      </section>
+
+      {/* Instagram Feed */}
+      <section className='flex items-center justify-center bg-white py-12 lg:py-20'>
+        <InstagramEmbed />
       </section>
 
       {/* Newsletter Signup */}

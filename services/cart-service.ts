@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { CartItem } from '@prisma/client'
 import { getServerSession } from 'next-auth'
 
-import { selectGetCart } from '@/types/cart-type'
+import { selectGetCart, selectGetCartItem } from '@/types/cart-type'
 import { Product } from '@/types/product-type'
 import { authOptions } from '@/lib/auth'
 import prisma from '@/lib/prisma'
@@ -14,9 +14,14 @@ export async function getCart() {
   if (!session) throw new Error('Unauthorized')
 
   return await prisma.cart.findFirst({
-    select: selectGetCart,
-    where: { userId: session.user.id },
-    orderBy: { createdAt: 'desc' }
+    select: {
+      ...selectGetCart,
+      items: {
+        select: selectGetCartItem,
+        orderBy: { updatedAt: 'desc' }
+      }
+    },
+    where: { userId: session.user.id }
   })
 }
 
@@ -27,8 +32,7 @@ export async function createCartItem(cartId: string, product: Product) {
   const createdCartItem = await prisma.cartItem.create({
     data: {
       product: { connect: { id: product.id } },
-      quantity: 1,
-      price: product.price * 1,
+      price: product.price,
       cart: {
         connect: { id: cartId }
       }
