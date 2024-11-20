@@ -36,8 +36,8 @@ export default function AddToCartBtn({ product, cart }: AddToCartBtnProps) {
     if (!cart) return
 
     if (!isProductInCart) {
-    await createCartItem(cart.id, product)
-    toast.success(`${product.name} added to the cart`)
+      await createCartItem(cart.id, product)
+      toast.success(`${product.name} added to the cart`)
     }
 
     router.push('/cart')

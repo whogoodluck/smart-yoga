@@ -29,9 +29,7 @@ export default function CartProduct({ cartItem }: CartProductProps) {
           >
             {cartItem.product.name}
           </Link>
-          <p className='mt-3 text-lg font-medium'>
-            ₹{cartItem.product.price}
-          </p>
+          <p className='mt-3 text-lg font-medium'>₹{cartItem.product.price}</p>
         </div>
       </div>
 
