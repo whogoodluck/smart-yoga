@@ -5,8 +5,12 @@ import { cn } from '@/lib/utils'
 
 import './globals.css'
 
+import { PropsWithChildren } from 'react'
+import { getServerSession } from 'next-auth'
 import { Toaster } from 'react-hot-toast'
 
+import { authOptions } from '@/lib/auth'
+import AuthProvider from '@/contexts/auth-provider'
 import Header from '@/components/header'
 
 export const metadata: Metadata = {
@@ -16,20 +20,20 @@ export const metadata: Metadata = {
   }
 }
 
-export default function RootLayout({
-  children
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default async function RootLayout({ children }: PropsWithChildren) {
+  const session = await getServerSession(authOptions)
+
   return (
     <html suppressHydrationWarning lang='en'>
       <body
         suppressHydrationWarning
         className={cn(poppins.variable, 'font-sans antialiased')}
       >
-        <Header />
-        <main>{children}</main>
-        <Toaster />
+        <AuthProvider session={session}>
+          <Header />
+          <main>{children}</main>
+          <Toaster />
+        </AuthProvider>
       </body>
     </html>
   )
