@@ -1,4 +1,4 @@
-import { User } from "./user.type"
+import { User } from "./user-type"
 
 declare module 'next-auth' {
   type UserData = User

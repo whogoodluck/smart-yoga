@@ -1,3 +1,4 @@
+import { comparePassword } from '@/services/user-service'
 import { NextAuthOptions, Session } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
@@ -17,12 +18,20 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         try {
           if (!credentials) return null
-          const response = await prisma.user.findFirst({
-            where: { email: credentials.email, password: credentials.password }
+
+          const user = await prisma.user.findUnique({
+            where: { email: credentials.email }
           })
-          if (!response) return null
-          const { password: _, ...user } = response
-          return user
+          if (!user) return null
+
+          const isPasswordValid = await comparePassword(
+            credentials.password,
+            user.password
+          )
+          if (!isPasswordValid) return null
+
+          const { password: _, ...userWithoutPassword } = user
+          return userWithoutPassword
         } catch {
           return null
         }

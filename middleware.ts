@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { Role } from '@prisma/client'
 import { getToken, JWT } from 'next-auth/jwt'
 
-import { User } from './types/user.type'
+import { User } from './types/user-type'
 
 export async function middleware(req: NextRequest) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })

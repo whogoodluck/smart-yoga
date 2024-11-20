@@ -160,7 +160,7 @@ export default function SignupForm() {
               text='Sign Up'
             />
             <p className='text-sm text-muted-foreground'>
-              <span>Don&apos;t have an account?</span>{' '}
+              <span>Already have an account?</span>{' '}
               <Link
                 href='/signin'
                 className='text-primary underline-offset-4 hover:underline'

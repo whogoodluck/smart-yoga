@@ -1,7 +1,11 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import { getCart } from '@/services/cart-service'
 import { getProductDetails } from '@/services/product-service'
+import { getServerSession } from 'next-auth'
+
+import { authOptions } from '@/lib/auth'
 
 import AddToCartBtn from './add-to-cart-btn'
 import ProductQuantity from './product-quantity'
@@ -34,6 +38,13 @@ export default async function ProductDetailsPage({
 
   if (!product) return notFound()
 
+  const session = await getServerSession(authOptions)
+
+  let cart = null
+  if (session) {
+    cart = await getCart()
+  }
+
   return (
     <div className='container mx-auto w-[90%] py-12 lg:py-20'>
       <div className='flex flex-col gap-12 lg:flex-row'>
@@ -47,7 +58,15 @@ export default async function ProductDetailsPage({
         />
 
         <div>
-          <ProductQuantity product={product} />
+          <h1 className='text-3xl font-bold text-black'>{product.name}</h1>
+          <p className='mt-3'>{product.description}</p>
+          <p className='mt-6 text-2xl font-semibold'>₹{product.price / 100}</p>
+
+          <div className='mt-8'>
+            <h2 className='mb-2 text-xl font-bold text-black'>Quantity</h2>
+            <ProductQuantity product={product} cart={cart} />
+          </div>
+
           <div className='mt-6 space-y-2'>
             <p>
               <strong>Category:</strong> {product.category}
@@ -68,7 +87,7 @@ export default async function ProductDetailsPage({
               <strong>Rating:</strong> {product.rating} ⭐
             </p>
           </div>
-          <AddToCartBtn name={product.name} />
+          <AddToCartBtn product={product} cart={cart} />
         </div>
       </div>
     </div>

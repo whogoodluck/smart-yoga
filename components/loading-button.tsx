@@ -1,9 +1,10 @@
+import { ReactNode } from 'react'
 import { Loader2Icon } from 'lucide-react'
 
 import { Button, ButtonProps } from '@/components/ui/button'
 
 type LoadingButtonProps = {
-  text?: string
+  text?: string | ReactNode
   loading?: boolean
   disabled?: boolean
   variant?: ButtonProps['variant']
