@@ -1,5 +1,9 @@
 # Smart Yoga
 
+## Live Demo
+
+You can view the live demo of the project here: [Smart Yoga](https://smartyoga.vercel.app/)
+
 ## Project Setup Guide
 
 Follow the steps below to set up the project on your local machine:
@@ -13,7 +17,7 @@ Ensure you have the following installed:
 - **PostgreSQL** (Database)
 - **Git** (Version Control)
 
-## 1. Clone the Repository
+### 1. Clone the Repository
 
 Clone the project repository to your local machine:
 
@@ -101,6 +105,57 @@ Formatting:
 ```bash
 npm run format
 ```
+
+## Tech Stack
+
+The project uses the following technologies:
+
+- **React** (JavaScript library for building user interfaces)
+- **Next.js** (React framework for building web applications)
+- **Tailwind CSS** (Utility-first CSS framework)
+- **Shadcn UI** (Component library for React)
+- **React Markdown** (For rendering Markdown content)
+- **React Hook Form** (Form management library for React)
+- **React Quill** (Rich text editor for React)
+- **Recharts** (Charting library for React)
+- **Zod** (Schema validation library)
+- **TypeScript** (Typed superset of JavaScript)
+- **Prisma** (ORM for PostgreSQL database)
+- **PostgreSQL** (Relational database)
+- **NextAuth.js** (Authentication)
+- **ESLint** (JavaScript linting)
+- **Prettier** (Code formatting)
+- **Vercel** (Deployment platform)
+- **Git** (Version control)
+
+## Next.js Features Used
+
+- **App Router** – File-based routing and data fetching.
+- **React Server Components (RSC)** – Server-side rendering for better performance.
+- **Server Actions** – Simplified server-side data fetching and state.
+- **Middleware** – Handles routing, authentication, and redirects.
+- **Font & Image Optimization** – Automatic optimization for faster loads.
+- **Dynamic Routing** – Flexible routes based on data.
+- **Custom Error and Loading Pages** – Custom error handling and loading built-in.
+
+## Problems Faced
+
+- **Next.js 15 Issues**: There were some problems with peer dependencies in Next.js 15. I had to use the `--force` flag while running `npm install` to make everything work.
+- **Database Relations**: It is sometimes difficult to manage complex database relationships and write the correct queries.
+- **Authentication Issues**: Setting up login and access control for users and admins using NextAuth was tricky and needed lots of testing.
+
+## Smart Yoga Features
+
+- User Authentication
+- Shopping Cart
+- Blog System
+- Instagram Feed Integration
+- SEO Optimization
+- Admin Panel
+- Analytics Dashboard
+- Product Management
+- Social Media Links Management
+- Error and Success Alerts
 
 ## What's Next
 
