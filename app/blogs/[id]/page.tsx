@@ -63,9 +63,9 @@ export default async function BlogDetailsPage({
       </div>
 
       <article className='mt-8'>
-          <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-            {blog.content}
-          </ReactMarkdown>
+        <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+          {blog.content}
+        </ReactMarkdown>
       </article>
 
       {blog.tags.length ? (
