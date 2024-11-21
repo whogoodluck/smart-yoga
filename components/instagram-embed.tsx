@@ -2,7 +2,11 @@
 
 import { useEffect } from 'react'
 
-export default function InstagramEmbed() {
+type InstagramEmbedProps = {
+  link: string
+}
+
+export default function InstagramEmbed({ link }: InstagramEmbedProps) {
   useEffect(() => {
     const script = document.createElement('script')
     script.src = 'https://www.instagram.com/embed.js'
@@ -13,7 +17,7 @@ export default function InstagramEmbed() {
   return (
     <blockquote
       className='instagram-media'
-      data-instgrm-permalink='https://www.instagram.com/zrod94'
+      data-instgrm-permalink={link}
       data-instgrm-version='12'
       style={{
         background: '#FFF',
@@ -30,7 +34,7 @@ export default function InstagramEmbed() {
       <div style={{ padding: '206px' }}>
         <a
           id='main_link'
-          href='https://www.instagram.com/zrod94'
+          href={link}
           style={{
             background: '#FFFFFF',
             lineHeight: '0',
@@ -266,7 +270,7 @@ export default function InstagramEmbed() {
           }}
         >
           <a
-            href='https://www.instagram.com/zrod94'
+            href={link}
             style={{
               color: '#c9c8cd',
               fontFamily: 'Arial,sans-serif',

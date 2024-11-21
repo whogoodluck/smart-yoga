@@ -34,12 +34,12 @@ export default function EnhancedAnalytics({
   topProducts,
   blogTags,
   cartActivity,
-  totalProducts = 100,
-  totalBlogs = 100,
-  totalUsers = 100
+  totalProducts,
+  totalBlogs,
+  totalUsers
 }: AnalyticsProps) {
   return (
-    <div>
+    <div className='mb-12'>
       <div className='my-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3'>
         <div className='space-y-2 rounded-lg bg-white p-8'>
           <h3 className='text-lg font-semibold'>Total Products</h3>

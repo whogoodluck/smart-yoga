@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { getFourBlogs } from '@/services/blog-service'
 import { getFourProducts } from '@/services/product-service'
+import { getInstagramLink } from '@/services/social-service'
 
 import { cn } from '@/lib/utils'
 import { Button, buttonVariants } from '@/components/ui/button'
@@ -14,6 +15,7 @@ import yogaBanner from '@/public/images/yoga-banner.jpg'
 export default async function HomePage() {
   const products = await getFourProducts()
   const blogs = await getFourBlogs()
+  const instagramLink = await getInstagramLink()
 
   return (
     <div>
@@ -145,14 +147,16 @@ export default async function HomePage() {
       </section>
 
       {/* Featured Products Section */}
-      <section className='container mx-auto w-[90%] py-12 text-center lg:py-20'>
-        <h2 className='text-3xl font-bold text-black'>Featured Products</h2>
-        <div className='mt-8 grid gap-8 md:grid-cols-3 lg:grid-cols-4'>
-          {products.map(product => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      </section>
+      {products.length > 0 && (
+        <section className='container mx-auto w-[90%] py-12 text-center lg:py-20'>
+          <h2 className='text-3xl font-bold text-black'>Featured Products</h2>
+          <div className='mt-8 grid gap-8 md:grid-cols-3 lg:grid-cols-4'>
+            {products.map(product => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Customer Testimonials */}
       <section className='bg-white py-12 lg:py-20'>
@@ -189,19 +193,23 @@ export default async function HomePage() {
       </section>
 
       {/* Blogs Section */}
-      <section className='container mx-auto w-[90%] py-12 text-center lg:py-20'>
-        <h2 className='text-3xl font-bold text-black'>Blogs</h2>
-        <div className='mt-8 grid gap-8 md:grid-cols-3 lg:grid-cols-4'>
-          {blogs.map(blog => (
-            <BlogCard key={blog.id} blog={blog} />
-          ))}
-        </div>
-      </section>
+      {blogs.length > 0 && (
+        <section className='container mx-auto w-[90%] py-12 text-center lg:py-20'>
+          <h2 className='text-3xl font-bold text-black'>Blogs</h2>
+          <div className='mt-8 grid gap-8 md:grid-cols-3 lg:grid-cols-4'>
+            {blogs.map(blog => (
+              <BlogCard key={blog.id} blog={blog} />
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Instagram Feed */}
-      <section className='flex items-center justify-center bg-white py-12 lg:py-20'>
-        <InstagramEmbed />
-      </section>
+      {instagramLink?.url && (
+        <section className='flex items-center justify-center bg-white py-12 lg:py-20'>
+          <InstagramEmbed link={instagramLink.url} />
+        </section>
+      )}
 
       {/* Newsletter Signup */}
       <section className='bg-black py-12 text-background lg:py-20'>

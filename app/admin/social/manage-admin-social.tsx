@@ -1,13 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import dynamic from 'next/dynamic'
-import { useRouter } from 'next/navigation'
-import { createBlog } from '@/services/blog-service'
+import { updateSocialMediaLinks } from '@/services/social-service'
 import {
-  AdminBlogForm,
-  adminBlogFormSchema
-} from '@/validators/admin-blogs-schema'
+  AdminSocialMediaLinksForm,
+  adminSocialMediaLinksFormSchema
+} from '@/validators/admin-social-schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -23,32 +21,25 @@ import {
 import { Input } from '@/components/ui/input'
 import LoadingButton from '@/components/loading-button'
 
-import 'react-quill-new/dist/quill.snow.css'
-
-const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
-
-export default function ManageAdminBlogs() {
+export default function UpdateSocialMediaLinks() {
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const router = useRouter()
 
-  const form = useForm<AdminBlogForm>({
-    resolver: zodResolver(adminBlogFormSchema),
+  const form = useForm<AdminSocialMediaLinksForm>({
+    resolver: zodResolver(adminSocialMediaLinksFormSchema),
     defaultValues: {
-      title: '',
-      content: '',
-      image: ''
+      facebook: '',
+      instagram: '',
+      twitter: ''
     }
   })
 
-  async function onSubmit(data: AdminBlogForm) {
+  async function onSubmit(data: AdminSocialMediaLinksForm) {
     try {
       setIsSubmitting(true)
-      const createdBlog = await createBlog(data)
-      toast.success('Blog created!')
-      form.reset()
-      router.push(`/blogs/${createdBlog.id}`)
+      await updateSocialMediaLinks(data)
+      toast.success('Social media links updated successfully!')
     } catch {
-      toast.error('Failed to create blog')
+      toast.error('Failed to update social media links')
     } finally {
       setIsSubmitting(false)
     }
@@ -56,20 +47,19 @@ export default function ManageAdminBlogs() {
 
   return (
     <div className='w-full max-w-2xl py-8'>
-      <h1 className='text-3xl font-bold text-black'>Write a New Blog</h1>
+      <h1 className='text-3xl font-bold text-black'>
+        Update Social Media Links
+      </h1>
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className='mt-8 w-full space-y-4'
-        >
+        <form onSubmit={form.handleSubmit(onSubmit)} className='mt-8 space-y-4'>
           <FormField
             control={form.control}
-            name='title'
+            name='facebook'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Title</FormLabel>
+                <FormLabel>Facebook URL</FormLabel>
                 <FormControl>
-                  <Input placeholder='Enter blog title' {...field} />
+                  <Input {...field} placeholder='Enter Facebook URL' />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -78,12 +68,12 @@ export default function ManageAdminBlogs() {
 
           <FormField
             control={form.control}
-            name='image'
+            name='instagram'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Image URL</FormLabel>
+                <FormLabel>Instagram URL</FormLabel>
                 <FormControl>
-                  <Input placeholder='Enter image URL' {...field} />
+                  <Input {...field} placeholder='Enter Instagram URL' />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -92,26 +82,23 @@ export default function ManageAdminBlogs() {
 
           <FormField
             control={form.control}
-            name='content'
+            name='twitter'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Content</FormLabel>
+                <FormLabel>Twitter URL</FormLabel>
                 <FormControl>
-                  <ReactQuill
-                    {...field}
-                    className='h-[50rem] rounded-lg pb-12'
-                  />
+                  <Input {...field} placeholder='Enter Twitter URL' />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          <div className='pt-8 text-center lg:pt-4'>
+          <div className='pt-4 text-center'>
             <LoadingButton
               type='submit'
               loading={isSubmitting}
-              text='Publish'
+              text='Update Links'
               className='w-1/2'
             />
           </div>
