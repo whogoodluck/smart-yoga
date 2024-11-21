@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { Blog } from '@/types/blog-type'
 import yogaBanner from '@/public/images/yoga-banner.jpg'
 
+import BlogTags from './blog-tags'
+
 type BlogCardProps = {
   blog: Blog
 }
@@ -30,16 +32,10 @@ export default function BlogCard({ blog }: BlogCardProps) {
         <h2 className='line-clamp-2 text-xl font-semibold underline-offset-4 hover:underline'>
           {blog.title}
         </h2>
-        <p className='mt-2 text-sm font-medium text-foreground/70'>
+        <p className='mb-4 mt-2 text-sm font-medium text-foreground/70'>
           By {blog.author.firstName} {blog.author.lastName} • {formattedDate}
         </p>
-        <div className='mt-4 flex flex-wrap gap-2'>
-          {blog.tags.map(tag => (
-            <div key={tag} className='rounded-full bg-secondary px-3 py-1'>
-              <p className='text-xs font-semibold'>{tag}</p>
-            </div>
-          ))}
-        </div>
+        <BlogTags tags={blog.tags} />
         <p className='mt-5 line-clamp-3 text-sm'>{blog.content}</p>
       </div>
     </Link>

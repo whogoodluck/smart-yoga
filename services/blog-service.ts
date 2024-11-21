@@ -5,7 +5,7 @@ import { AdminBlogForm } from '@/validators/admin-blogs-schema'
 import { Role } from '@prisma/client'
 import { getServerSession } from 'next-auth'
 
-import { selectGetBlogs } from '@/types/blog-type'
+import { selectGetBlogDetails, selectGetBlogs } from '@/types/blog-type'
 import { authOptions } from '@/lib/auth'
 import prisma from '@/lib/prisma'
 
@@ -36,4 +36,11 @@ export async function createBlog(blog: AdminBlogForm) {
 
   revalidatePath('/', 'layout')
   return createdBlog
+}
+
+export async function getBlogDetails(blogId: string) {
+  return await prisma.blog.findUnique({
+    where: { id: blogId },
+    select: selectGetBlogDetails
+  })
 }

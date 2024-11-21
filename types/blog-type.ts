@@ -21,3 +21,15 @@ export const selectGetBlogs = {
 export type Blog = Prisma.BlogGetPayload<{
   select: typeof selectGetBlogs
 }>
+
+export const selectGetBlogDetails = {
+  id: true,
+  title: true,
+  content: true,
+  image: true,
+  author: {
+    select: selectBlogAuthor
+  },
+  tags: true,
+  createdAt: true
+}
