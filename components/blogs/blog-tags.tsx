@@ -3,6 +3,8 @@ type BlogTagsProps = {
 }
 
 export default function BlogTags({ tags }: BlogTagsProps) {
+  if (!tags.length) return
+
   return (
     <div className='flex flex-wrap gap-2'>
       {tags.map(tag => (

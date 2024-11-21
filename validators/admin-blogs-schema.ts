@@ -4,7 +4,7 @@ import { requiredString } from './helpers'
 
 export const adminBlogFormSchema = z.object({
   title: requiredString('Title').default(''),
-  content: requiredString('Content'),
+  content: requiredString('Content').default(''),
   image: requiredString('Image URL').url('Invalid image URL')
 })
 

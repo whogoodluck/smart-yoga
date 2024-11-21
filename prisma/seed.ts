@@ -6,6 +6,13 @@ import prisma from '@/lib/prisma'
 async function main() {
   const users = [
     {
+      firstName: 'Good',
+      lastName: 'Luck',
+      email: 'goodluck@example.com',
+      password: await hashPassword('securepassword'),
+      role: Role.ADMIN
+    },
+    {
       firstName: 'Jane',
       lastName: 'Doe',
       email: 'jane.doe@example.com',

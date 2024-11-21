@@ -3,6 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getBlogDetails } from '@/services/blog-service'
+import ReactMarkdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw'
 
 import BlogTags from '@/components/blogs/blog-tags'
 
@@ -60,14 +62,18 @@ export default async function BlogDetailsPage({
         </div>
       </div>
 
-      <article className='prose lg:prose-xl mt-8 max-w-none text-gray-800'>
-        {blog.content}
+      <article className='mt-8'>
+          <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+            {blog.content}
+          </ReactMarkdown>
       </article>
 
-      <div className='mt-12'>
-        <h3 className='mb-3 text-lg font-semibold'>Tags</h3>
-        <BlogTags tags={blog.tags} />
-      </div>
+      {blog.tags.length ? (
+        <div className='mt-12'>
+          <h3 className='mb-3 text-lg font-semibold'>Tags</h3>
+          <BlogTags tags={blog.tags} />
+        </div>
+      ) : null}
 
       <div className='mt-12'>
         <Link

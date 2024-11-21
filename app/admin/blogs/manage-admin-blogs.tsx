@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
 import { createBlog } from '@/services/blog-service'
 import {
@@ -20,8 +21,11 @@ import {
   FormMessage
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
 import LoadingButton from '@/components/loading-button'
+
+import 'react-quill-new/dist/quill.snow.css'
+
+const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
 
 export default function ManageAdminBlogs() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -74,24 +78,6 @@ export default function ManageAdminBlogs() {
 
           <FormField
             control={form.control}
-            name='content'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Content</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder='Write your blog content here'
-                    className='h-40'
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
             name='image'
             render={({ field }) => (
               <FormItem>
@@ -104,11 +90,28 @@ export default function ManageAdminBlogs() {
             )}
           />
 
+          <FormField
+            control={form.control}
+            name='content'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Content</FormLabel>
+                <FormControl>
+                  <ReactQuill
+                    {...field}
+                    className='h-[50rem] rounded-lg pb-12'
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
           <div className='pt-4 text-center'>
             <LoadingButton
               type='submit'
               loading={isSubmitting}
-              text='Publish Blog'
+              text='Publish'
               className='w-1/2'
             />
           </div>

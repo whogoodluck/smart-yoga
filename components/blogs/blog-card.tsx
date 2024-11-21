@@ -1,5 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import ReactMarkdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw'
 
 import { Blog } from '@/types/blog-type'
 import yogaBanner from '@/public/images/yoga-banner.jpg'
@@ -36,7 +38,11 @@ export default function BlogCard({ blog }: BlogCardProps) {
           By {blog.author.firstName} {blog.author.lastName} • {formattedDate}
         </p>
         <BlogTags tags={blog.tags} />
-        <p className='mt-5 line-clamp-3 text-sm'>{blog.content}</p>
+        <div className='mt-5 line-clamp-3 text-sm'>
+          <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+            {blog.content}
+          </ReactMarkdown>
+        </div>
       </div>
     </Link>
   )

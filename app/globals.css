@@ -44,3 +44,14 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.quill > * {
+  @apply !border-inherit !font-sans !text-inherit !shadow-sm;
+}
+.quill > .ql-toolbar {
+  @apply !rounded-t-lg;
+}
+
+.quill > .ql-container {
+  @apply !rounded-b-lg;
+}
