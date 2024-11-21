@@ -18,7 +18,7 @@ export async function getCart() {
       ...selectGetCart,
       items: {
         select: selectGetCartItem,
-        orderBy: { updatedAt: 'desc' }
+        orderBy: { createdAt: 'desc' }
       }
     },
     where: { userId: session.user.id }
