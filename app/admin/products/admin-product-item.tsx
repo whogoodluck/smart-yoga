@@ -19,21 +19,27 @@ export default function AdminProductItem({
   const [isDeleting, setIsDeleting] = useState(false)
 
   async function handleDelete(id: string, name: string) {
-    setIsDeleting(true)
-    await deleteProduct(id)
-    toast.success(`${name} deleted!`)
-    setIsDeleting(false)
+    try {
+      setIsDeleting(true)
+      await deleteProduct(id)
+      toast.success(`${name} deleted!`)
+    } catch {
+      toast.error(`Failed to delete ${name}`)
+    } finally {
+      setIsDeleting(false)
+    }
   }
 
   return (
-    <li className='flex flex-col gap-4 border-b p-8 lg:flex-row lg:items-center'>
+    <li className='flex flex-col gap-4 border-b py-8 lg:flex-row lg:items-center'>
       <Link href={`/products/${product.id}`}>
         <Image
           src={product.image}
           width={128}
           height={128}
           alt={product.name}
-          className='h-32 w-32 rounded-xl object-cover'
+          className='h-32 rounded-xl object-cover'
+          priority
         />
       </Link>
       <div>

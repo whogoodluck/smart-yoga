@@ -15,10 +15,15 @@ export default function PlaceOrderBtn({ total, cartId }: PlaceOrderBtnProps) {
   const [isPlacingOrder, setIsPlacingOrder] = useState(false)
 
   async function handlePlaceOrder() {
-    setIsPlacingOrder(true)
-    await clearCart(cartId)
-    toast.success('Order placed successfully!')
-    setIsPlacingOrder(false)
+    try {
+      setIsPlacingOrder(true)
+      await clearCart(cartId)
+      toast.success('Order placed successfully!')
+    } catch {
+      toast.success('Failed to place order')
+    } finally {
+      setIsPlacingOrder(false)
+    }
   }
 
   return (

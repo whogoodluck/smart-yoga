@@ -1,6 +1,12 @@
 'use server'
 
+import { revalidatePath } from 'next/cache'
+import { AdminBlogForm } from '@/validators/admin-blogs-schema'
+import { Role } from '@prisma/client'
+import { getServerSession } from 'next-auth'
+
 import { selectGetBlogs } from '@/types/blog-type'
+import { authOptions } from '@/lib/auth'
 import prisma from '@/lib/prisma'
 
 export async function getBlogs() {
@@ -16,4 +22,18 @@ export async function getFourBlogs() {
     select: selectGetBlogs,
     orderBy: { updatedAt: 'desc' }
   })
+}
+
+export async function createBlog(blog: AdminBlogForm) {
+  const session = await getServerSession(authOptions)
+  if (!session || session.user.role !== Role.ADMIN) {
+    throw new Error('Unauthorized')
+  }
+
+  const createdBlog = await prisma.blog.create({
+    data: { ...blog, authorId: session.user.id }
+  })
+
+  revalidatePath('/', 'layout')
+  return createdBlog
 }

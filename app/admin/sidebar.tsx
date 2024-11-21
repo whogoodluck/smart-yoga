@@ -24,14 +24,14 @@ export default function Sidebar() {
             key={href}
             href={href}
             className={cn(
-              'flex items-center rounded-md px-4 py-2 font-medium transition',
+              'flex items-center justify-center rounded-md px-4 py-2 font-medium transition lg:justify-start',
               pathname === href
                 ? 'bg-white text-black'
                 : 'text-gray-600 hover:bg-gray-200 hover:text-black'
             )}
           >
             <Icon className='h-5 w-5' />
-            <span className='ml-4 hidden lg:block'>{name}</span>
+            <span className='hidden lg:ml-4 lg:block'>{name}</span>
           </Link>
         ))}
       </nav>

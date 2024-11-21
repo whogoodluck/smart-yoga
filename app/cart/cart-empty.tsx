@@ -9,7 +9,7 @@ export default function CartEmpty() {
         Cart Empty
       </h2>
       <Link href='/products' className={buttonVariants()}>
-        Shop More
+        Shop Now
       </Link>
     </section>
   )

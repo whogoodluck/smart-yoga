@@ -1,7 +1,7 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { AdminProductsForm } from '@/validators/admin-products-schema'
+import { AdminProductForm } from '@/validators/admin-products-schema'
 import { Role } from '@prisma/client'
 import { getServerSession } from 'next-auth'
 
@@ -47,7 +47,7 @@ export async function deleteProduct(productId: string) {
   revalidatePath('/', 'layout')
 }
 
-export async function createProduct(product: AdminProductsForm) {
+export async function createProduct(product: AdminProductForm) {
   const session = await getServerSession(authOptions)
   if (!session || session.user.role !== Role.ADMIN) {
     throw new Error('Unauthorized')
@@ -63,7 +63,7 @@ export async function createProduct(product: AdminProductsForm) {
 
 export async function updateProduct(
   productId: string,
-  product: AdminProductsForm
+  product: AdminProductForm
 ) {
   const session = await getServerSession(authOptions)
   if (!session || session.user.role !== Role.ADMIN) {

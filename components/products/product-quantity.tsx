@@ -18,11 +18,16 @@ export default function ProductQuantity({ cartItem }: ProductQuantityProps) {
   const [isUpdatingCart, setIsUpdatingCart] = useState(false)
 
   async function handleIncreaseQty() {
-    setIsUpdatingCart(true)
-    await updateCartItem(cartItem.id, {
-      quantity: cartItem.quantity + 1
-    })
-    setIsUpdatingCart(false)
+    try {
+      setIsUpdatingCart(true)
+      await updateCartItem(cartItem.id, {
+        quantity: cartItem.quantity + 1
+      })
+    } catch {
+      toast.error('Failed to update quantity')
+    } finally {
+      setIsUpdatingCart(false)
+    }
   }
 
   async function handleDecreaseQty() {
@@ -35,11 +40,17 @@ export default function ProductQuantity({ cartItem }: ProductQuantityProps) {
   }
 
   async function handleRemoveFromCart() {
-    setIsUpdatingCart(true)
     if (!cartItem) return
-    await removeCartItem(cartItem.id)
-    toast.success(`${cartItem.product.name} removed from the cart`)
-    setIsUpdatingCart(false)
+
+    try {
+      setIsUpdatingCart(true)
+      await removeCartItem(cartItem.id)
+      toast.success(`${cartItem.product.name} removed from the cart`)
+    } catch {
+      toast.success('Failed to remove from the cart')
+    } finally {
+      setIsUpdatingCart(false)
+    }
   }
 
   return (

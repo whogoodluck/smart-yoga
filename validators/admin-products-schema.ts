@@ -9,4 +9,4 @@ export const adminProductFormSchema = z.object({
   image: requiredString('Image URL').url('Invalid image URL')
 })
 
-export type AdminProductsForm = z.infer<typeof adminProductFormSchema>
+export type AdminProductForm = z.infer<typeof adminProductFormSchema>

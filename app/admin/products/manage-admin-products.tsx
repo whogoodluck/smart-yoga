@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import { createProduct, updateProduct } from '@/services/product-service'
 import {
-  adminProductFormSchema,
-  AdminProductsForm
+  AdminProductForm,
+  adminProductFormSchema
 } from '@/validators/admin-products-schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
@@ -33,9 +33,9 @@ export default function ManageAdminProducts({
   products
 }: ManageAdminProductsProps) {
   const [editingProduct, setEditingProduct] = useState<Product | null>(null)
-  const [isPending, setIsPending] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const form = useForm<AdminProductsForm>({
+  const form = useForm<AdminProductForm>({
     resolver: zodResolver(adminProductFormSchema),
     defaultValues: {
       name: '',
@@ -45,28 +45,23 @@ export default function ManageAdminProducts({
     }
   })
 
-  async function onSubmit(data: AdminProductsForm) {
-    setIsPending(true)
-    if (editingProduct) {
-      try {
+  async function onSubmit(data: AdminProductForm) {
+    setIsSubmitting(true)
+    try {
+      if (editingProduct) {
         await updateProduct(editingProduct.id, data)
         toast.success(`${data.name} updated!`)
-        form.reset()
-      } catch {
-        toast.error(`Failed to update ${data.name}`)
-      }
-    } else {
-      try {
+      } else {
         await createProduct(data)
         toast.success(`${data.name} added!`)
-        form.reset()
-      } catch {
-        toast.error(`Failed to add ${data.name}`)
       }
+      form.reset()
+    } catch {
+      toast.error(`Failed to add/update ${data.name}`)
+    } finally {
+      setEditingProduct(null)
+      setIsSubmitting(false)
     }
-
-    setEditingProduct(null)
-    setIsPending(false)
   }
 
   function handleEdit(product: Product) {
@@ -75,7 +70,7 @@ export default function ManageAdminProducts({
   }
 
   return (
-    <div className='max-w-2xl'>
+    <div className='max-w-2xl py-8'>
       <h1 className='text-3xl font-bold text-black'>Manage Products</h1>
 
       <Form {...form}>
@@ -145,7 +140,7 @@ export default function ManageAdminProducts({
           <div className='pt-4 text-center'>
             <LoadingButton
               type='submit'
-              loading={isPending}
+              loading={isSubmitting}
               text={editingProduct ? 'Update Product' : 'Add Product'}
               className='w-1/2'
             />

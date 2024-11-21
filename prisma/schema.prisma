@@ -9,7 +9,7 @@ datasource db {
 }
 
 model Product {
-  id          String   @id @default(cuid())
+  id          String     @id @default(cuid())
   name        String
   description String
   price       Int
@@ -20,9 +20,9 @@ model Product {
   weight      String?
   brand       String?
   rating      Float?
-  cartItems    CartItem[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  cartItems   CartItem[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
 }
 
 model Blog {
@@ -30,7 +30,8 @@ model Blog {
   title     String
   content   String
   image     String?
-  author    String
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
   tags      String[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -51,6 +52,7 @@ model User {
   emailVerified DateTime?
   image         String?
   cart          Cart?
+  blogs         Blog[]
   accounts      Account[]
   sessions      Session[]
 
@@ -88,13 +90,14 @@ model Session {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
 model Cart {
-  id        String      @id @default(cuid())
-  userId    String      @unique
-  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id        String     @id @default(cuid())
+  userId    String     @unique
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   items     CartItem[]
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
 }
 
 model CartItem {

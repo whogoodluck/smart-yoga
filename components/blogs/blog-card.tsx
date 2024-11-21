@@ -31,7 +31,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
           {blog.title}
         </h2>
         <p className='mt-2 text-sm font-medium text-foreground/70'>
-          By {blog.author} • {formattedDate}
+          By {blog.author.firstName} {blog.author.lastName} • {formattedDate}
         </p>
         <div className='mt-4 flex flex-wrap gap-2'>
           {blog.tags.map(tag => (

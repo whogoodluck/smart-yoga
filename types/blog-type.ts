@@ -1,11 +1,19 @@
 import { Prisma } from '@prisma/client'
 
+const selectBlogAuthor = {
+  id: true,
+  firstName: true,
+  lastName: true
+}
+
 export const selectGetBlogs = {
   id: true,
   title: true,
   content: true,
   image: true,
-  author: true,
+  author: {
+    select: selectBlogAuthor
+  },
   tags: true,
   createdAt: true
 }

@@ -19,7 +19,9 @@ export default async function AdminLayout({ children }: PropsWithChildren) {
   return (
     <div className='container mx-auto flex w-[90%]'>
       <Sidebar />
-      <section className='mx-auto py-8 pl-6'>{children}</section>
+      <section className='mx-auto flex-1 justify-items-center pl-6'>
+        {children}
+      </section>
     </div>
   )
 }
