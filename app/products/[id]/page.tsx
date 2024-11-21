@@ -42,8 +42,6 @@ export default async function ProductDetailsPage({
     cart = await getCart()
   }
 
-  console.log('cart', cart)
-
   const cartItem = cart?.items.find(item => item.product.id === product.id)
 
   return (

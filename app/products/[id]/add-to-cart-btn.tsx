@@ -26,7 +26,6 @@ export default function AddToCartBtn({ product, cart }: AddToCartBtnProps) {
 
   async function handleAdd() {
     setIsAddingToCart(true)
-    console.log('inside handleAdd')
     if (status === 'unauthenticated') {
       router.push(
         `/signin?callbackUrl=${encodeURIComponent(window.location.href)}`
