@@ -16,7 +16,7 @@ export async function middleware(req: NextRequest) {
       url.pathname = '/products'
       return NextResponse.redirect(url)
     }
-  } else if (req.nextUrl.pathname === '/dashboard/admin') {
+  } else if (req.nextUrl.pathname.includes('/admin')) {
     if (!token || ((token as JWT).user as User).role !== Role.ADMIN) {
       url.pathname = '/products'
       return NextResponse.redirect(url)

@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import { getBlogs } from '@/services/blog-service'
 
-import BlogCard from '@/components/blog-card'
+import BlogCard from '@/components/blogs/blog-card'
 
 export const metadata: Metadata = {
   title: 'Blogs'

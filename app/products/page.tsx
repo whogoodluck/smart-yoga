@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import { getProducts } from '@/services/product-service'
 
-import ProductCard from '@/components/product-card'
+import ProductCard from '@/components/products/product-card'
 
 export const metadata: Metadata = {
   title: 'Products'

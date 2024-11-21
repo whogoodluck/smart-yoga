@@ -6,9 +6,9 @@ import { getFourProducts } from '@/services/product-service'
 import { cn } from '@/lib/utils'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import BlogCard from '@/components/blog-card'
+import BlogCard from '@/components/blogs/blog-card'
 import InstagramEmbed from '@/components/instagram-embed'
-import ProductCard from '@/components/product-card'
+import ProductCard from '@/components/products/product-card'
 import yogaBanner from '@/public/images/yoga-banner.jpg'
 
 export default async function HomePage() {

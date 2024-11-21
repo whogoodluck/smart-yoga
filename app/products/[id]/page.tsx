@@ -6,9 +6,9 @@ import { getProductDetails } from '@/services/product-service'
 import { getServerSession } from 'next-auth'
 
 import { authOptions } from '@/lib/auth'
+import ProductQuantity from '@/components/products/product-quantity'
 
 import AddToCartBtn from './add-to-cart-btn'
-import ProductQuantity from './product-quantity'
 
 export async function generateMetadata({
   params
