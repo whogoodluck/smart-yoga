@@ -9,28 +9,28 @@ async function main() {
       firstName: 'Good',
       lastName: 'Luck',
       email: 'goodluck@example.com',
-      password: await hashPassword('securepassword'),
+      password: 'securepassword',
       role: Role.ADMIN
     },
     {
       firstName: 'Jane',
       lastName: 'Doe',
       email: 'jane.doe@example.com',
-      password: await hashPassword('securepassword'),
+      password: 'securepassword',
       role: Role.ADMIN
     },
     {
       firstName: 'John',
       lastName: 'Smith',
       email: 'john.smith@example.com',
-      password: await hashPassword('securepassword'),
+      password: 'securepassword',
       role: Role.USER
     },
     {
       firstName: 'Emily',
       lastName: 'Johnson',
       email: 'emily.johnson@example.com',
-      password: await hashPassword('securepassword'),
+      password: 'securepassword',
       role: Role.USER
     }
   ]
@@ -281,11 +281,29 @@ async function main() {
     console.log('Deleting existing data...')
     await prisma.blog.deleteMany()
     await prisma.product.deleteMany()
+    await prisma.cart.deleteMany()
     await prisma.user.deleteMany()
+
+    console.log('Hashing passwords...')
+    const usersWithHashedPasswords = await Promise.all(
+      users.map(async user => ({
+        ...user,
+        password: await hashPassword(user.password)
+      }))
+    )
 
     console.log('Seeding users...')
     await prisma.user.createMany({
-      data: users
+      data: usersWithHashedPasswords
+    })
+
+    console.log('Creating carts for users...')
+    const allUsers = await prisma.user.findMany()
+    const carts = allUsers.map(user => ({
+      userId: user.id
+    }))
+    await prisma.cart.createMany({
+      data: carts
     })
 
     console.log('Seeding products...')
@@ -294,14 +312,22 @@ async function main() {
     })
 
     console.log('Seeding blogs...')
-    const allUsers = await prisma.user.findMany()
     const blogsWithAuthors = blogs.map((blog, index) => ({
       ...blog,
       authorId: allUsers[index % allUsers.length].id
     }))
-    await prisma.blog.createMany({
-      data: blogsWithAuthors
-    })
+
+    for (const blog of blogsWithAuthors) {
+      await prisma.blog.create({
+        data: {
+          title: blog.title,
+          content: blog.content,
+          image: blog.image,
+          tags: { set: blog.tags },
+          authorId: blog.authorId
+        }
+      })
+    }
 
     console.log('Seed data created successfully!')
   } catch (error) {

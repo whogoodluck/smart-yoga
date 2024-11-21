@@ -7,7 +7,7 @@ import { FileTextIcon, HomeIcon, PackageIcon, ShareIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navItems = [
-  { name: 'Dashboard', href: '/admin/dashboard', icon: HomeIcon },
+  { name: 'Dashboard', href: '/admin', icon: HomeIcon },
   { name: 'Products', href: '/admin/products', icon: PackageIcon },
   { name: 'Blogs', href: '/admin/blogs', icon: FileTextIcon },
   { name: 'Social Media', href: '/admin/social-media', icon: ShareIcon }

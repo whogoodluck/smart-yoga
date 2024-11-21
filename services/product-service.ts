@@ -78,3 +78,39 @@ export async function updateProduct(
   revalidatePath('/', 'layout')
   return createdProduct
 }
+
+export async function getMonthlyProductCount() {
+  const data = await prisma.product.groupBy({
+    by: ['createdAt'],
+    _count: {
+      id: true
+    },
+    orderBy: {
+      createdAt: 'asc'
+    }
+  })
+
+  return data.map(item => ({
+    month: item.createdAt.toLocaleString('default', { month: 'short' }),
+    count: item._count.id
+  }))
+}
+
+export async function getTopSellingProducts() {
+  const data = await prisma.cartItem.groupBy({
+    by: ['productId'],
+    _sum: { quantity: true },
+    orderBy: { _sum: { quantity: 'desc' } },
+    take: 5
+  })
+
+  return data.map(item => ({
+    productId: item.productId,
+    quantity: item._sum.quantity
+  }))
+}
+
+export async function getTotalProducts() {
+  const count = await prisma.product.count()
+  return count
+}

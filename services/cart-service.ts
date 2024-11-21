@@ -80,3 +80,15 @@ export async function clearCart(cartId: string) {
 
   revalidatePath('/', 'layout')
 }
+export async function getCartActivity() {
+  const data = await prisma.cartItem.groupBy({
+    by: ['createdAt'],
+    _count: { id: true },
+    orderBy: { createdAt: 'asc' }
+  })
+
+  return data.map(item => ({
+    month: item.createdAt.toLocaleString('default', { month: 'short' }),
+    count: item._count.id
+  }))
+}

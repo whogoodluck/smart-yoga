@@ -31,3 +31,20 @@ export async function createUser(user: RegisterForm) {
     data: { ...user, password: hashedPassword, cart: { create: {} } }
   })
 }
+export async function getUserRegistrationCount() {
+  const data = await prisma.user.groupBy({
+    by: ['createdAt'],
+    _count: { id: true },
+    orderBy: { createdAt: 'asc' }
+  })
+
+  return data.map(item => ({
+    month: item.createdAt.toLocaleString('default', { month: 'short' }),
+    count: item._count.id
+  }))
+}
+
+export async function getTotalUsers() {
+  const count = await prisma.user.count()
+  return count
+}

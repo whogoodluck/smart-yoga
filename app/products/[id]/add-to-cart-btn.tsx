@@ -26,6 +26,7 @@ export default function AddToCartBtn({ product, cart }: AddToCartBtnProps) {
 
   async function handleAdd() {
     setIsAddingToCart(true)
+    console.log('inside handleAdd')
     if (status === 'unauthenticated') {
       router.push(
         `/signin?callbackUrl=${encodeURIComponent(window.location.href)}`
@@ -39,7 +40,7 @@ export default function AddToCartBtn({ product, cart }: AddToCartBtnProps) {
       try {
         await createCartItem(cart.id, product)
         toast.success(`${product.name} added to the cart`)
-      } catch (err) {
+      } catch {
         toast.error('Failed to add to the cart')
       }
     }

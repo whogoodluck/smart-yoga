@@ -44,3 +44,40 @@ export async function getBlogDetails(blogId: string) {
     select: selectGetBlogDetails
   })
 }
+
+export async function getMonthlyBlogCount() {
+  const data = await prisma.blog.groupBy({
+    by: ['createdAt'],
+    _count: {
+      id: true
+    },
+    orderBy: {
+      createdAt: 'asc'
+    }
+  })
+
+  return data.map(item => ({
+    month: item.createdAt.toLocaleString('default', { month: 'short' }),
+    count: item._count.id
+  }))
+}
+export async function getBlogTagsDistribution() {
+  const blogs = await prisma.blog.findMany({ select: { tags: true } })
+  const tagCounts: Record<string, number> = {}
+
+  blogs.forEach(blog => {
+    blog.tags.forEach(tag => {
+      tagCounts[tag] = (tagCounts[tag] || 0) + 1
+    })
+  })
+
+  return Object.entries(tagCounts).map(([tag, count]) => ({
+    tag,
+    count
+  }))
+}
+
+export async function getTotalBlogs() {
+  const count = await prisma.blog.count()
+  return count
+}
