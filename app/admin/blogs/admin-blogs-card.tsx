@@ -8,9 +8,9 @@ import rehypeRaw from 'rehype-raw'
 import { Blog } from '@/types/blog-type'
 import { Button } from '@/components/ui/button'
 
-function BlogCard({ blog, onEdit }: { blog: Blog; onEdit: () => void }) {
+function AdminBlogCard({ blog, onEdit }: { blog: Blog; onEdit: () => void }) {
   const [isDeleting, setIsDeleting] = useState(false)
-  const handleDelete = async (blogId: any) => {
+  const handleDelete = async (blogId: string) => {
     try {
       setIsDeleting(true)
       await deleteBlog(blogId)
@@ -60,4 +60,4 @@ function BlogCard({ blog, onEdit }: { blog: Blog; onEdit: () => void }) {
   )
 }
 
-export default BlogCard
+export default AdminBlogCard

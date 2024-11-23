@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { useRouter } from 'next/navigation'
 import { createBlog, updateBlog } from '@/services/blog-service'
 import {
   AdminBlogForm,
@@ -27,7 +26,7 @@ import 'react-quill-new/dist/quill.snow.css'
 
 import { Blog } from '@/types/blog-type'
 
-import BlogCard from './blogs-card'
+import AdminBlogCard from './admin-blogs-card'
 
 const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
 
@@ -137,7 +136,11 @@ export default function ManageAdminBlogs({ blogs }: { blogs: Blog[] }) {
       </Form>
       <div className='mt-6 flex flex-col gap-8'>
         {blogs.map(blog => (
-          <BlogCard key={blog.id} blog={blog} onEdit={() => handleEdit(blog)} />
+          <AdminBlogCard
+            key={blog.id}
+            blog={blog}
+            onEdit={() => handleEdit(blog)}
+          />
         ))}
       </div>
     </div>
