@@ -5,7 +5,7 @@ import { AdminBlogForm } from '@/validators/admin-blogs-schema'
 import { Role } from '@prisma/client'
 import { getServerSession } from 'next-auth'
 
-import { selectGetBlogDetails, selectGetBlogs } from '@/types/blog-type'
+import { Blog, selectGetBlogDetails, selectGetBlogs } from '@/types/blog-type'
 import { authOptions } from '@/lib/auth'
 import prisma from '@/lib/prisma'
 
@@ -80,4 +80,27 @@ export async function getBlogTagsDistribution() {
 export async function getTotalBlogs() {
   const count = await prisma.blog.count()
   return count
+}
+
+export async function deleteBlog(id: string) {
+  const session = await getServerSession(authOptions)
+  if (!session || session.user.role !== Role.ADMIN) {
+    throw new Error('Unauthorized')
+  }
+
+  await prisma.blog.delete({ where: { id } })
+
+  revalidatePath('/', 'layout')
+}
+
+export async function updateBlog(id: string, blog: AdminBlogForm) {
+  const session = await getServerSession(authOptions)
+  if (!session || session.user.role !== Role.ADMIN) {
+    throw new Error('Unauthorized')
+  }
+
+  const updatedBlog = await prisma.blog.update({ where: { id }, data: blog })
+
+  revalidatePath('/', 'layout')
+  return updatedBlog
 }

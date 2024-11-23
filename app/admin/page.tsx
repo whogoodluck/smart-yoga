@@ -33,6 +33,7 @@ export default async function AdminPage() {
       getCartActivity()
     ])
 
+
   return (
     <div className='w-full py-8'>
       <h1 className='text-3xl font-bold text-black'>Analytics</h1>

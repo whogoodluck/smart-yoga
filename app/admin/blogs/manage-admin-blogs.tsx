@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
-import { createBlog } from '@/services/blog-service'
+import { createBlog, updateBlog } from '@/services/blog-service'
 import {
   AdminBlogForm,
   adminBlogFormSchema
@@ -25,11 +25,15 @@ import LoadingButton from '@/components/loading-button'
 
 import 'react-quill-new/dist/quill.snow.css'
 
+import { Blog } from '@/types/blog-type'
+
+import BlogCard from './blogs-card'
+
 const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
 
-export default function ManageAdminBlogs() {
+export default function ManageAdminBlogs({ blogs }: { blogs: Blog[] }) {
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const router = useRouter()
+  const [editingBlog, setEditingBlog] = useState<Blog | null>(null)
 
   const form = useForm<AdminBlogForm>({
     resolver: zodResolver(adminBlogFormSchema),
@@ -40,16 +44,30 @@ export default function ManageAdminBlogs() {
     }
   })
 
+  function handleEdit(blog: Blog) {
+    form.reset({
+      title: blog.title,
+      content: blog.content,
+      image: blog.image || ''
+    })
+    setEditingBlog(blog)
+  }
+
   async function onSubmit(data: AdminBlogForm) {
     try {
       setIsSubmitting(true)
-      const createdBlog = await createBlog(data)
-      toast.success('Blog created!')
+      if (editingBlog) {
+        await updateBlog(editingBlog.id, data)
+        toast.success('Blog updated!')
+      } else {
+        await createBlog(data)
+        toast.success('Blog created!')
+      }
       form.reset()
-      router.push(`/blogs/${createdBlog.id}`)
     } catch {
-      toast.error('Failed to create blog')
+      toast.error('Failed to create/update')
     } finally {
+      setEditingBlog(null)
       setIsSubmitting(false)
     }
   }
@@ -111,12 +129,17 @@ export default function ManageAdminBlogs() {
             <LoadingButton
               type='submit'
               loading={isSubmitting}
-              text='Publish'
+              text={editingBlog ? 'Update' : 'Publish'}
               className='w-1/2'
             />
           </div>
         </form>
       </Form>
+      <div className='mt-6 flex flex-col gap-8'>
+        {blogs.map(blog => (
+          <BlogCard key={blog.id} blog={blog} onEdit={() => handleEdit(blog)} />
+        ))}
+      </div>
     </div>
   )
 }
