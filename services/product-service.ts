@@ -54,7 +54,10 @@ export async function createProduct(product: AdminProductForm) {
   }
 
   const createdProduct = await prisma.product.create({
-    data: { ...product, price: parseInt(product.price) * 100 }
+    data: {
+      ...product,
+      price: parseInt((Number(product.price) * 100).toString())
+    }
   })
 
   revalidatePath('/', 'layout')
@@ -72,7 +75,10 @@ export async function updateProduct(
 
   const createdProduct = await prisma.product.update({
     where: { id: productId },
-    data: { ...product, price: parseInt(product.price) * 100 }
+    data: {
+      ...product,
+      price: parseInt((Number(product.price) * 100).toString())
+    }
   })
 
   revalidatePath('/', 'layout')

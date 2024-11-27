@@ -59,12 +59,12 @@ export default function ManageAdminBlogs({ blogs }: { blogs: Blog[] }) {
         await createBlog(data)
         toast.success('Blog created!')
       }
-      form.reset()
     } catch {
       toast.error('Failed to create/update')
     } finally {
       setEditingBlog(null)
       setIsSubmitting(false)
+      form.reset({ title: '', content: '', image: '' })
     }
   }
 

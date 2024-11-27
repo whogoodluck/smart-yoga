@@ -55,18 +55,18 @@ export default function ManageAdminProducts({
         await createProduct(data)
         toast.success(`${data.name} added!`)
       }
-      form.reset()
     } catch {
       toast.error(`Failed to add/update ${data.name}`)
     } finally {
       setEditingProduct(null)
       setIsSubmitting(false)
+      form.reset({ name: '', description: '', price: '', image: '' })
     }
   }
 
   function handleEdit(product: Product) {
     window.scrollTo(0, 0)
-    form.reset({ ...product, price: product.price.toString() })
+    form.reset({ ...product, price: (product.price / 100).toString() })
     setEditingProduct(product)
   }
 
