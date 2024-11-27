@@ -22,7 +22,7 @@ function AdminBlogCard({ blog, onEdit }: { blog: Blog; onEdit: () => void }) {
   }
 
   return (
-    <li className='flex w-full flex-col gap-4 border border-b py-8 lg:flex-row lg:items-center'>
+    <li className='flex w-full flex-col gap-4 border-b py-8 lg:flex-row lg:items-center'>
       <Link href={`/blogs/${blog.id}`}>
         <Image
           src={blog.image!}

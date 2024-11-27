@@ -94,7 +94,7 @@ export default function SignupForm() {
                   <FormControl>
                     <Input
                       type='text'
-                      placeholder='Enter your last name'
+                      placeholder='Enter your first name'
                       {...field}
                     />
                   </FormControl>

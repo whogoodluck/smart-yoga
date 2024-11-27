@@ -44,11 +44,8 @@ export default function ManageAdminBlogs({ blogs }: { blogs: Blog[] }) {
   })
 
   function handleEdit(blog: Blog) {
-    form.reset({
-      title: blog.title,
-      content: blog.content,
-      image: blog.image || ''
-    })
+    window.scrollTo(0, 0)
+    form.reset({ ...blog, image: blog.image! })
     setEditingBlog(blog)
   }
 
@@ -134,7 +131,8 @@ export default function ManageAdminBlogs({ blogs }: { blogs: Blog[] }) {
           </div>
         </form>
       </Form>
-      <div className='mt-6 flex flex-col gap-8'>
+      <h2 className='mt-16 text-2xl font-bold'>Blogs</h2>
+      <ul className='mt-6 space-y-4'>
         {blogs.map(blog => (
           <AdminBlogCard
             key={blog.id}
@@ -142,7 +140,7 @@ export default function ManageAdminBlogs({ blogs }: { blogs: Blog[] }) {
             onEdit={() => handleEdit(blog)}
           />
         ))}
-      </div>
+      </ul>
     </div>
   )
 }

@@ -52,7 +52,7 @@ export default function AdminProductItem({
         <p className='mt-1 text-sm text-muted-foreground'>
           {product.description}
         </p>
-        <p className='mt-4 text-sm font-semibold'>₹{product.price}</p>
+        <p className='mt-4 text-sm font-semibold'>₹{product.price / 100}</p>
       </div>
       <div className='flex space-x-2 lg:ml-auto'>
         <Button variant='secondary' onClick={onEdit}>

@@ -65,6 +65,7 @@ export default function ManageAdminProducts({
   }
 
   function handleEdit(product: Product) {
+    window.scrollTo(0, 0)
     form.reset({ ...product, price: product.price.toString() })
     setEditingProduct(product)
   }
