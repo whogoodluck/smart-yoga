@@ -42,7 +42,7 @@ async function main() {
         'High-tech yoga mat with real-time feedback and posture correction.',
       price: 14999,
       image:
-        'https://images.pexels.com/photos/3824688/pexels-photo-3824688.jpeg',
+        'https://www.atha.one/wp-content/uploads/2021/10/pro_black_yogamat.jpg.webp',
       category: 'Mat',
       material: 'Rubber',
       dimensions: '72x24 inches',
@@ -54,8 +54,7 @@ async function main() {
       name: 'Yoga Wearable Tracker',
       description: 'Track your movements and monitor your yoga progress.',
       price: 9999,
-      image:
-        'https://images.pexels.com/photos/4283400/pexels-photo-4283400.jpeg',
+      image: 'https://images.gizbot.com/img/2024/12/wearables2-1734762427.jpeg',
       category: 'Wearable',
       material: 'Plastic',
       dimensions: '5x5x1 cm',
@@ -69,7 +68,7 @@ async function main() {
         'Enhance your flexibility and posture with a smart yoga wheel.',
       price: 6999,
       image:
-        'https://images.pexels.com/photos/4214726/pexels-photo-4214726.jpeg',
+        'https://media.istockphoto.com/id/620734990/photo/woman-practicing-advanced-yoga-pilates-stretching-training-yoga-wheel-poses.jpg?s=612x612&w=0&k=20&c=lh9xi9w7Cj4GdA1k1BIiVCh_Ti4nf7mYT08BTSZ0RxM=',
       category: 'Wheel',
       material: 'Foam',
       dimensions: '12 inches',
@@ -82,7 +81,7 @@ async function main() {
       description: 'Foam roller with built-in sensors for body recovery.',
       price: 3999,
       image:
-        'https://images.pexels.com/photos/4201609/pexels-photo-4201609.jpeg',
+        'https://media.istockphoto.com/id/1476493286/photo/pilates-physiotherapy-and-massage-woman-with-foam-roller-on-floor-for-leg-tension-and-support.jpg?s=612x612&w=0&k=20&c=a-f9qERo21VDJf9ohPu1LQGuD1EjhaJdeDoK9hzn_o0=',
       category: 'Roller',
       material: 'Foam',
       dimensions: '18 inches',
@@ -96,7 +95,7 @@ async function main() {
         'Chair designed for yoga practice with posture correction features.',
       price: 19999,
       image:
-        'https://images.pexels.com/photos/4194326/pexels-photo-4194326.jpeg',
+        'https://media.istockphoto.com/id/1333975306/photo/young-african-american-couple-smiling-happy-training-using-chair-at-sport-center.jpg?s=612x612&w=0&k=20&c=yr-49Hy9EeXRSRwKkpuFYlkZaB4FKTF9GsvBOZ_-3hw=',
       category: 'Chair',
       material: 'Wood',
       dimensions: '45x50x100 cm',
@@ -109,7 +108,7 @@ async function main() {
       description: 'Resistance bands for improving strength and flexibility.',
       price: 1999,
       image:
-        'https://images.pexels.com/photos/3815607/pexels-photo-3815607.jpeg',
+        'https://images.squarespace-cdn.com/content/v1/61f7b214c3e111165a45cd53/1675099487959-20XL9QK69EB4H9ANEJWC/LHP-Brand-Shoot-179.jpg',
       category: 'Bands',
       material: 'Latex',
       dimensions: '50 cm (length)',
@@ -123,7 +122,7 @@ async function main() {
         'Yoga balance board for improving core strength and stability.',
       price: 8999,
       image:
-        'https://images.pexels.com/photos/4214727/pexels-photo-4214727.jpeg',
+        'https://standuppaddleboardworld.com/wp-content/uploads/2023/05/ceb30971-5744-4c50-95c6-90c71ccc49c2-shutterstock_1452889004.jpg',
       category: 'Board',
       material: 'Wood',
       dimensions: '30x60 cm',
@@ -136,7 +135,7 @@ async function main() {
       description: 'Smart mirror that tracks and corrects your yoga posture.',
       price: 39999,
       image:
-        'https://images.pexels.com/photos/4340274/pexels-photo-4340274.jpeg',
+        'https://media.istockphoto.com/id/1306214707/photo/bringing-the-body-and-mind-together-into-one-harmonious-experience.jpg?s=612x612&w=0&k=20&c=Kl2HPY40fAaOlzHi3GFNa6nxem959s02QgmjMXqEzGQ=',
       category: 'Mirror',
       material: 'Glass',
       dimensions: '100x60 cm',
@@ -149,7 +148,7 @@ async function main() {
       description: 'Set of yoga blocks to assist in various poses.',
       price: 2599,
       image:
-        'https://images.pexels.com/photos/3997300/pexels-photo-3997300.jpeg',
+        'https://www.corebalance.co.uk/cdn/shop/files/EVA_Yoga_Block_2025_S_EBC_Feature_4.jpg?v=1739357638&width=1080',
       category: 'Blocks',
       material: 'Cork',
       dimensions: '23x15x8 cm',
@@ -162,7 +161,7 @@ async function main() {
       description: 'Bolster pillow for better support during yoga poses.',
       price: 3999,
       image:
-        'https://images.pexels.com/photos/4258669/pexels-photo-4258669.jpeg',
+        'https://www.huggermugger.com/wp-content/uploads/2021/02/supported-savasana.jpg',
       category: 'Bolster',
       material: 'Cotton',
       dimensions: '60x20 cm',
@@ -175,7 +174,7 @@ async function main() {
       description: 'Smart rings for resistance training during yoga practice.',
       price: 2499,
       image:
-        'https://images.pexels.com/photos/4342577/pexels-photo-4342577.jpeg',
+        'https://t3.ftcdn.net/jpg/02/32/44/44/360_F_232444426_A8Bpd0II2HAboHDndASG5VIEZKlyeBsf.jpg',
       category: 'Rings',
       material: 'Silicone',
       dimensions: '10 cm (diameter)',
@@ -188,7 +187,7 @@ async function main() {
       description: 'Non-slip gloves for enhanced grip during yoga.',
       price: 1999,
       image:
-        'https://images.pexels.com/photos/4214826/pexels-photo-4214826.jpeg',
+        'https://www.yogapaws.com/cdn/shop/products/DSC_0490_preview.jpeg?v=1597482123',
       category: 'Gloves',
       material: 'Silicone',
       dimensions: 'One size',
@@ -201,7 +200,7 @@ async function main() {
       description: 'Foam blocks for added support in various poses.',
       price: 1699,
       image:
-        'https://images.pexels.com/photos/4176975/pexels-photo-4176975.jpeg',
+        'https://media.istockphoto.com/id/1307599895/photo/slender-girl-doing-stretching-with-yoga-blocks.jpg?s=612x612&w=0&k=20&c=xyV6q_V3hHMxPaQDlmbpLQU6TnrUjF_4jIhkLQeeefs=',
       category: 'Block',
       material: 'Foam',
       dimensions: '23x15x8 cm',
