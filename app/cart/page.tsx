@@ -1,6 +1,8 @@
 import { Metadata } from 'next'
 import { getCart } from '@/services/cart-service'
 
+import { formatPrice } from '@/lib/utils'
+
 import CartEmpty from './cart-empty'
 import CartProduct from './cart-product'
 import PlaceOrderBtn from './place-order-btn'
@@ -38,7 +40,7 @@ export default async function CartPage() {
         <div className='mt-8 min-w-64 max-w-3xl'>
           <div className='mt-8 flex w-full justify-between'>
             <h3 className='font-bold'>Subtotal</h3>
-            <p className='text-lg font-medium'>{subtotal}</p>
+            <p className='text-lg font-medium'>{formatPrice(subtotal)}</p>
           </div>
           <div className='mt-4 flex justify-between'>
             <h3 className='font-bold'>Discount</h3>
@@ -47,7 +49,7 @@ export default async function CartPage() {
 
           <div className='mt-4 flex justify-between border-t pt-4'>
             <h3 className='font-bold'>Total</h3>
-            <p className='text-lg font-medium'>{total}</p>
+            <p className='text-lg font-medium'>{formatPrice(total)}</p>
           </div>
 
           <PlaceOrderBtn total={total} cartId={cart.id} />

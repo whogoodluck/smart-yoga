@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { Product } from '@/types/product-type'
+import { formatPrice } from '@/lib/utils'
 
 type ProductCardProps = {
   product: Product
@@ -28,7 +29,9 @@ export default function ProductCard({ product }: ProductCardProps) {
           {product.name}
         </h2>
         <p className='mt-2 text-sm text-foreground/90'>{product.description}</p>
-        <p className='mt-3 text-lg font-semibold'>₹{product.price / 100}</p>
+        <p className='mt-3 text-lg font-semibold'>
+          {formatPrice(product.price)}
+        </p>
       </div>
     </Link>
   )

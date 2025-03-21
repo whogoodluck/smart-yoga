@@ -5,6 +5,7 @@ import { deleteProduct } from '@/services/product-service'
 import toast from 'react-hot-toast'
 
 import { Product } from '@/types/product-type'
+import { formatPrice } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 
 type AdminProductItemProps = {
@@ -52,7 +53,9 @@ export default function AdminProductItem({
         <p className='mt-1 text-sm text-muted-foreground'>
           {product.description}
         </p>
-        <p className='mt-4 text-sm font-semibold'>₹{product.price / 100}</p>
+        <p className='mt-4 text-sm font-semibold'>
+          {formatPrice(product.price)}
+        </p>
       </div>
       <div className='flex space-x-2 lg:ml-auto'>
         <Button variant='secondary' onClick={onEdit}>

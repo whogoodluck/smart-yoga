@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { CartItem } from '@/types/cart-type'
+import { formatPrice } from '@/lib/utils'
 import ProductQuantity from '@/components/products/product-quantity'
 import yogaBanner from '@/public/images/yoga-banner.jpg'
 
@@ -30,7 +31,9 @@ export default function CartProduct({ cartItem }: CartProductProps) {
           >
             {cartItem.product.name}
           </Link>
-          <p className='mt-3 text-lg font-medium'>₹{cartItem.product.price}</p>
+          <p className='mt-3 text-lg font-medium'>
+            {formatPrice(cartItem.product.price)}
+          </p>
         </div>
       </div>
 

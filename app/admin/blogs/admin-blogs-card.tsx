@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { deleteBlog } from '@/services/blog-service'
+import ReactMarkdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw'
 
 import { Blog } from '@/types/blog-type'
 import { Button } from '@/components/ui/button'
@@ -38,7 +40,12 @@ function AdminBlogCard({ blog, onEdit }: { blog: Blog; onEdit: () => void }) {
         >
           {blog.title}
         </Link>
-        <p className='mt-1 text-sm text-muted-foreground'>{blog.content}</p>
+        <ReactMarkdown
+          className='mt-1 line-clamp-3 text-sm text-muted-foreground'
+          rehypePlugins={[rehypeRaw]}
+        >
+          {blog.content}
+        </ReactMarkdown>
       </div>
       <div className='flex space-x-2 lg:ml-auto'>
         <Button variant='secondary' onClick={onEdit}>

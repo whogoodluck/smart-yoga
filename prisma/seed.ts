@@ -54,7 +54,8 @@ async function main() {
       name: 'Yoga Wearable Tracker',
       description: 'Track your movements and monitor your yoga progress.',
       price: 9999,
-      image: 'https://images.gizbot.com/img/2024/12/wearables2-1734762427.jpeg',
+      image:
+        'https://blog.bestbuy.ca/wp-content/uploads/2018/12/fitness-trackers-.jpg',
       category: 'Wearable',
       material: 'Plastic',
       dimensions: '5x5x1 cm',
@@ -216,7 +217,7 @@ async function main() {
       content:
         'Discover the amazing benefits of starting your day with morning yoga. From improved flexibility to a calmer mind, learn why yoga is the perfect way to begin your day.',
       image:
-        'https://images.pexels.com/photos/3756523/pexels-photo-3756523.jpeg',
+        'https://yogajala.com/wp-content/uploads/8-Benefits-Of-Morning-Yoga.jpg',
       tags: ['yoga', 'wellness', 'morning routine']
     },
     {
@@ -224,7 +225,7 @@ async function main() {
       content:
         'Learn simple and effective meditation techniques that are perfect for beginners. Start your journey towards mindfulness and inner peace today.',
       image:
-        'https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg',
+        'https://www.burnalong.com/wp-content/uploads/2022/04/female-teacher-leading-group-of-mature-men-1.jpg',
       tags: ['meditation', 'mindfulness', 'yoga']
     },
     {
@@ -232,7 +233,7 @@ async function main() {
       content:
         'Feeling stressed? Try these top 5 yoga poses that are specifically designed to help you relax and de-stress after a long day.',
       image:
-        'https://images.pexels.com/photos/2908175/pexels-photo-2908175.jpeg',
+        'https://www.dexterwellness.org/wp-content/uploads/sites/17/2024/09/PWM-2968454_Sept10_YogaPoses_Graphic-2-scaled.jpg',
       tags: ['stress relief', 'yoga poses', 'health']
     },
     {
@@ -240,14 +241,15 @@ async function main() {
       content:
         'Discover how to incorporate mindful eating practices into your yoga routine. Learn the connection between nutrition and yoga for a balanced lifestyle.',
       image:
-        'https://images.pexels.com/photos/3757941/pexels-photo-3757941.jpeg',
+        'https://media.post.rvohealth.io/wp-content/uploads/sites/2/2024/03/633081-5-Mindful-Eating-Techniques-for-a-Healthier-Relationship-With-Food-1296x728-header_body.jpg',
       tags: ['nutrition', 'mindful eating', 'yoga']
     },
     {
       title: 'The Power of Breath in Yoga',
       content:
         'Breath control is an essential aspect of yoga. Discover the power of breath and how it can transform your yoga practice and overall well-being.',
-      image: 'https://images.pexels.com/photos/317157/pexels-photo-317157.jpeg',
+      image:
+        'https://anandayogadetox.com/wp-content/uploads/2025/02/WhatsApp-Image-2025-01-15-at-13.05.51.jpeg',
       tags: ['breathwork', 'yoga practice', 'well-being']
     },
     {
@@ -255,15 +257,14 @@ async function main() {
       content:
         'Yoga is not just physical exercise; it’s also a great way to support mental health. Learn how yoga can help manage stress, anxiety, and depression.',
       image:
-        'https://images.pexels.com/photos/4056528/pexels-photo-4056528.jpeg',
+        'https://images.pexels.com/photos/2908175/pexels-photo-2908175.jpeg',
       tags: ['mental health', 'yoga benefits', 'inner peace']
     },
     {
       title: 'Yoga for Athletes: Enhancing Performance',
       content:
         'Athletes can greatly benefit from yoga. Explore how yoga can enhance athletic performance, improve flexibility, and aid in recovery.',
-      image:
-        'https://images.pexels.com/photos/3822621/pexels-photo-3822621.jpeg',
+      image: 'https://images.pexels.com/photos/317157/pexels-photo-317157.jpeg',
       tags: ['athletes', 'performance', 'yoga']
     },
     {
@@ -271,7 +272,7 @@ async function main() {
       content:
         'Setting an intention is a powerful way to enhance your yoga practice. Learn how to set meaningful intentions and align your practice with your personal goals.',
       image:
-        'https://images.pexels.com/photos/4325434/pexels-photo-4325434.jpeg',
+        'https://yogajala.com/wp-content/uploads/2021/11/Setting-Yoga-Intentions_-A-Guide-6.jpg',
       tags: ['intention', 'mindfulness', 'yoga practice']
     }
   ]

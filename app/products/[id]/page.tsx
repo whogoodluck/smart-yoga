@@ -6,6 +6,7 @@ import { getProductDetails } from '@/services/product-service'
 import { getServerSession } from 'next-auth'
 
 import { authOptions } from '@/lib/auth'
+import { formatPrice } from '@/lib/utils'
 import ProductQuantity from '@/components/products/product-quantity'
 
 import AddToCartBtn from './add-to-cart-btn'
@@ -59,7 +60,9 @@ export default async function ProductDetailsPage({
         <div>
           <h1 className='text-3xl font-bold text-black'>{product.name}</h1>
           <p className='mt-3'>{product.description}</p>
-          <p className='mt-6 text-2xl font-semibold'>₹{product.price / 100}</p>
+          <p className='mt-6 text-2xl font-semibold'>
+            {formatPrice(product.price)}
+          </p>
 
           {!!cartItem && (
             <div className='mt-8'>
