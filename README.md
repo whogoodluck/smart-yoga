@@ -22,7 +22,7 @@ Ensure you have the following installed:
 Clone the project repository to your local machine:
 
 ```bash
-git clone https://github.com/SunnyKumar107/smart-yoga.git
+git clone https://github.com/whogoodluck/smart-yoga.git
 ```
 
 Navigate to the project folder:
